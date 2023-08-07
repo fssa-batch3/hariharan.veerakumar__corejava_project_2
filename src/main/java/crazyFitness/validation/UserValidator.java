@@ -22,32 +22,15 @@ public class UserValidator {
 
 	}
 
-	public static boolean validateLogin(String email, String providedPassword) throws InvalidUserException {
+	public static boolean validateLogin(String email, String providedPassword) {
 		if (email == null || providedPassword == null) {
+			System.out.println("Either your password or email is null please give any value");
 			return false;
 		}
-		UserDAO userDAO = new UserDAO();
-
 		if (validateEmail(email) && validatePassword(providedPassword)) {
-			try {
-				User storedUser = userDAO.getUserByEmail(email);
-				if (storedUser != null) {
-					String storedPassword = storedUser.getPassword();
-					if (storedPassword.equals(providedPassword)) {
-						System.out.println("Logged in Successfully");
-						return true;
-					} else {
-						System.out.println("Your password is wrong, please correct it");
-						return false;
-					}
-
-				}
-				System.out.println("Your email is not exists, Please register");
-			} catch (DAOException e) {
-				throw new InvalidUserException("Login details are not valid");
-			}
-
+			return true;
 		}
+		System.out.println("Your email or password looks quite Invalid please give valid!!!");
 		return false;
 	}
 
@@ -135,9 +118,6 @@ public class UserValidator {
 		return isMatch;
 	}
 
-	
-	
-	
 	public static boolean validateAge(int age) {
 		boolean isMatch = false;
 		if (age == 0)

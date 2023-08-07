@@ -13,7 +13,7 @@ public class TestProductName {
 	
 	@Test
 	public void testInvalidName() {
-		assertFalse(ProductValidator.validateProductName("email@example.com"));
+		assertFalse(ProductValidator.validateProductName("myemail@example.com"));
 	}
 	@Test
 	public void testInvalidNameSpecailCharacter() {

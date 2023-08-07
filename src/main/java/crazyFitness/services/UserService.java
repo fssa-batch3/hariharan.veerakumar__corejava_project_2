@@ -48,12 +48,28 @@ public class UserService {
 //	 }
 
 	public boolean login(String email, String providedPassword) throws ServiceException {
-		try {
+		UserDAO userDAO = new UserDAO();
+		if (UserValidator.validateLogin(email, providedPassword)) {
+			try {
+				User storedUser = userDAO.getUserByEmail(email);
+				if (storedUser != null) {
+					String storedPassword = storedUser.getPassword();
+					if (storedPassword.equals(providedPassword)) {
+						System.out.println("Logged in Successfully");
+						return true;
+					} else {
+						System.out.println("Your password is wrong, please correct it");
+						return false;
+					}
 
-			return UserValidator.validateLogin(email, providedPassword);
+				}
+				System.out.println("Your email is not exists, Please register");
 
-		} catch (InvalidUserException e) {
-			throw new ServiceException(e);
+			} catch (DAOException e) {
+				throw new ServiceException(e);
+			}
 		}
+		return false;
+
 	}
 }

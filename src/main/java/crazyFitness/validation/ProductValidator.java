@@ -11,7 +11,7 @@ public class ProductValidator {
 	
 	public static boolean validateProduct(Product product) throws InvalidProductException{
 		if(product != null && validateProductName(product.getProduct_name()) && validateProductImage(product.getProduct_image())
-				&& validateProductAlt(product.getProduct_alt()) && validateProductPrice(product.getProduct_price())) {
+				 && validateProductPrice(product.getProduct_price()) && validateDescrption(product.getDescrption()) && validateId(product.getProduct_id())) {
 			return true;
 		}
 		else {
@@ -49,15 +49,36 @@ public class ProductValidator {
 		return match;
 	}
 
-	public static boolean validateProductAlt(String alt) {
+	public static boolean validateId(int id) {
 		boolean match = true;
-		if(alt == null) {
+		if(id > 0) {
+			System.out.println("The ID is valid");
+			match = true;
+		}
+		else if (id <= 0){	
+			System.out.println("The ID is Invalid");
 			match = false;
 		}
 		return match;
 	}
 	
+//	public static boolean validateProductAlt(String alt) {
+//		boolean match = true;
+//		if(alt == null) {
+//			match = false;
+//		}
+//		return match;
+//	}
 	
+	public static boolean validateDescrption(String desc) {
+		boolean match = true;
+		if(desc == null) {
+			System.out.println("Your product description is Invalid or null");
+			match = false;
+		}
+		System.out.println("Your product description in Valid");
+		return match;
+	}
 	public static boolean validateProductPrice(int price) {
 		boolean match = false;
 		if(price < 0) {

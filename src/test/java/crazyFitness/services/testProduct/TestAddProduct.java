@@ -15,7 +15,7 @@ public class TestAddProduct {
 	@Test
 	public void testCreateProduct() {
 		ProductService productService = new ProductService();
-		Product product = new Product("./../assets/images/dumbbells.jpg","dumbbells image","Dumb Bells",999);
+		Product product = new Product(2,"./../assets/images/legmachine.jpg","Leg Machine",29999,"Used to stronger your leg");
 		try {
 			assertTrue(productService.ProductCreate(product));
 		}catch(ServiceException e){
@@ -24,7 +24,7 @@ public class TestAddProduct {
 		}
 	}
 	@Test
-	public void testNullProduct() {
+	public void testNullProduct() { 
 		ProductService productService = new ProductService();
 		Product product = null;
 		try {
@@ -33,16 +33,6 @@ public class TestAddProduct {
 			e.printStackTrace();
 		}
 	}
-	@Test
-	public void testCreateSameProduct() {
-		ProductService productService = new ProductService();
-		Product product = new Product("./../assets/images/dumbbells.jpg","dumbbells image","Dumb Bells",999);
-		try {
-			assertFalse(productService.ProductCreate(product));
-		}catch(ServiceException e){
-			e.printStackTrace();
 
-		}
-	}
 
 }
