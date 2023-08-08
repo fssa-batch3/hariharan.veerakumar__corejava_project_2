@@ -22,7 +22,7 @@ public void testValidUpdate() {
 		fail();
 	}
 }
-
+ 
 @Test
 public void testInvalidUpdate() {
 	ProductService productService = new ProductService();

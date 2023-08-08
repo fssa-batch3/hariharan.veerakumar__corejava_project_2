@@ -1,14 +1,14 @@
 package crazyFitness.dao;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import crazyFitness.dao.exceptions.DAOException;
 import crazyFitness.model.Product;
-import io.github.cdimascio.dotenv.Dotenv;
+
 
 public class ProductDAO {
 

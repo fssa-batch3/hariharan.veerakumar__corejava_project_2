@@ -30,7 +30,7 @@ public class TestLoginFeature {
 			assertFalse(userService.login("hariharan@gmail.com", "HariPassword$10"));
 		} catch (ServiceException e) {
 			e.printStackTrace();
-		}
+		} 
 	}
 	
 	@Test

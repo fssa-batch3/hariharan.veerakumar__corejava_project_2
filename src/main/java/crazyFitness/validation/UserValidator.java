@@ -3,7 +3,7 @@ package crazyFitness.validation;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.regex.PatternSyntaxException;
+
 
 import crazyFitness.dao.UserDAO;
 import crazyFitness.dao.exceptions.DAOException;
@@ -11,6 +11,10 @@ import crazyFitness.model.User;
 import crazyFitness.validation.exceptions.InvalidUserException;
 
 public class UserValidator {
+	
+	  private UserValidator() {
+		    throw new IllegalStateException("UserValidator class");
+		  }
 //	register user
 	public static boolean validateUser(User user) throws InvalidUserException {
 		if (user != null && validateName(user.getFname()) && validateName(user.getLname())

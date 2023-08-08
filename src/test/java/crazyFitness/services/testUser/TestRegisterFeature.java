@@ -67,7 +67,7 @@ public class TestRegisterFeature {
 		}	
 	}
 	
-	@Test 
+	@Test  
 	public void testNullUser() {
 		UserService userService = new UserService();
 		User user = null;
