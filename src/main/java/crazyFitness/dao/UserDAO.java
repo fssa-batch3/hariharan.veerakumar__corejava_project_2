@@ -14,7 +14,7 @@ import io.github.cdimascio.dotenv.Dotenv;
 import crazyFitness.dao.exceptions.*;
 
 public class UserDAO {
-	
+
 	// connecting to database
 	public static Connection getConnection() throws SQLException {
 		Connection connect = null;
@@ -32,17 +32,11 @@ public class UserDAO {
 			DB_USER = env.get("DB_USER");
 			DB_PASSWORD = env.get("DB_PASSWORD");
 		}
-		try {
+		connect = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
 
-			connect = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
-		} catch (Exception e) {
-			e.printStackTrace();
-			throw new RuntimeException("Fail to connect to the database");
-		}
 		return connect;
 	}
 
-	
 	// register user
 	public boolean register(User user) throws DAOException {
 		final String insertQuery = "INSERT INTO user (first_name,last_name,age,email,password,phone,address) VALUES (?,?,?,?,?,?,?)";
@@ -78,35 +72,32 @@ public class UserDAO {
 		}
 	}
 
-	
 // login user
 	public User getUserByEmail(String email) throws DAOException {
-	    final String selectQuery = "SELECT * FROM user WHERE email = ?";
-	    
-	    try (Connection connect = getConnection();
-	         PreparedStatement pst = connect.prepareStatement(selectQuery)) {
-	        pst.setString(1, email);
-	        
-	        ResultSet rs = pst.executeQuery();
-	        if (rs.next()) {
-	            User user = new User();
-	            user.setEmail(rs.getString("email"));
-	            user.setFname(rs.getString("first_name"));
-	            user.setLname(rs.getString("last_name"));
-	            user.setAge(rs.getInt("age"));
-	            user.setPassword(rs.getString("password"));
-	            user.setPhone(rs.getString("phone"));
-	            user.setAddress(rs.getString("address"));
-	            
-	            return user;
-	        }
-	    } catch (SQLException e) {
-	        throw new DAOException(e);
-	    }
-	    
-	    return null;
-	}
+		final String selectQuery = "SELECT * FROM user WHERE email = ?";
 
+		try (Connection connect = getConnection(); PreparedStatement pst = connect.prepareStatement(selectQuery)) {
+			pst.setString(1, email);
+
+			ResultSet rs = pst.executeQuery();
+			if (rs.next()) {
+				User user = new User();
+				user.setEmail(rs.getString("email"));
+				user.setFname(rs.getString("first_name"));
+				user.setLname(rs.getString("last_name"));
+				user.setAge(rs.getInt("age"));
+				user.setPassword(rs.getString("password"));
+				user.setPhone(rs.getString("phone"));
+				user.setAddress(rs.getString("address"));
+
+				return user;
+			}
+		} catch (SQLException e) {
+			throw new DAOException(e);
+		}
+
+		return null;
+	}
 
 	// update user
 	public boolean update(User user) throws DAOException {
