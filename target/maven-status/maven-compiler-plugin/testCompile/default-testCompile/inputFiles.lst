@@ -1,2 +1,14 @@
-C:\Users\HariharanVeerakumar\eclipse-workspace\crazyFitness\src\test\java\crazyFitness\services\testRegisterFeature.java
-C:\Users\HariharanVeerakumar\eclipse-workspace\crazyFitness\src\test\java\crazyFitness\validations\TestValidatePassword.java
+C:\Users\HariharanVeerakumar\eclipse-workspace\crazyFitness\src\test\java\crazyFitness\validations\testProductValidation\TestProductId.java
+C:\Users\HariharanVeerakumar\eclipse-workspace\crazyFitness\src\test\java\crazyFitness\services\testProduct\TestDeleteProduct.java
+C:\Users\HariharanVeerakumar\eclipse-workspace\crazyFitness\src\test\java\crazyFitness\services\testProduct\TestUpdateProduct.java
+C:\Users\HariharanVeerakumar\eclipse-workspace\crazyFitness\src\test\java\crazyFitness\validations\testProductValidation\TestProductName.java
+C:\Users\HariharanVeerakumar\eclipse-workspace\crazyFitness\src\test\java\crazyFitness\validations\testUserValidation\TestValidatePhone.java
+C:\Users\HariharanVeerakumar\eclipse-workspace\crazyFitness\src\test\java\crazyFitness\services\testSong\TestAddSong.java
+C:\Users\HariharanVeerakumar\eclipse-workspace\crazyFitness\src\test\java\crazyFitness\validations\testUserValidation\TestValidateEmail.java
+C:\Users\HariharanVeerakumar\eclipse-workspace\crazyFitness\src\test\java\crazyFitness\validations\testUserValidation\TestValidatePassword.java
+C:\Users\HariharanVeerakumar\eclipse-workspace\crazyFitness\src\test\java\crazyFitness\validations\testProductValidation\TestProductPrice.java
+C:\Users\HariharanVeerakumar\eclipse-workspace\crazyFitness\src\test\java\crazyFitness\services\testProduct\TestAddProduct.java
+C:\Users\HariharanVeerakumar\eclipse-workspace\crazyFitness\src\test\java\crazyFitness\validations\testUserValidation\TestValidateAge.java
+C:\Users\HariharanVeerakumar\eclipse-workspace\crazyFitness\src\test\java\crazyFitness\services\testUser\TestRegisterFeature.java
+C:\Users\HariharanVeerakumar\eclipse-workspace\crazyFitness\src\test\java\crazyFitness\validations\testUserValidation\TestValidateName.java
+C:\Users\HariharanVeerakumar\eclipse-workspace\crazyFitness\src\test\java\crazyFitness\services\testUser\TestLoginFeature.java

@@ -28,48 +28,13 @@ public class UserService {
 
 	}
 
-	// login
-//	 public boolean loginUser(String email, String password) throws ServiceException{
-//			UserDAO userDAO = new UserDAO();
-//			try {
-//				UserValidator.validateLoginUser(email,password);
-//				if (userDAO.login(email,password)) {
-//					System.out.println(email + " Sucessfully logged in");
-//					return true;
-//				} else {
-//					System.out.println("Login failed");
-//					return false;
-//				}
-//
-//			} catch (DAOException | InvalidUserException
-//					e) {
-//				throw new ServiceException(e);
-//			}
-//	 }
+
 
 	public boolean login(String email, String providedPassword) throws ServiceException {
-		UserDAO userDAO = new UserDAO();
-		if (UserValidator.validateLogin(email, providedPassword)) {
-			try {
-				User storedUser = userDAO.getUserByEmail(email);
-				if (storedUser != null) {
-					String storedPassword = storedUser.getPassword();
-					if (storedPassword.equals(providedPassword)) {
-						System.out.println("Logged in Successfully");
-						return true;
-					} else {
-						System.out.println("Your password is wrong, please correct it");
-						return false;
-					}
-
-				}
-				System.out.println("Your email is not exists, Please register");
-
-			} catch (DAOException e) {
-				throw new ServiceException(e);
-			}
+		try {
+			return UserValidator.validateLogin(email, providedPassword);
+	} catch (InvalidUserException e) {
+			throw new ServiceException(e);
 		}
-		return false;
-
 	}
 }

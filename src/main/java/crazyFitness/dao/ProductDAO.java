@@ -8,27 +8,30 @@ import java.sql.SQLException;
 
 import crazyFitness.dao.exceptions.DAOException;
 import crazyFitness.model.Product;
+import io.github.cdimascio.dotenv.Dotenv;
 
 public class ProductDAO {
 
-	public static void main(String[] args) {
-		try {
-			Connection connect = getConnection();
-			System.out.println(connect);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-	}
 
 	public static Connection getConnection() throws SQLException {
 		Connection connect = null;
-		String url = "jdbc:mysql://localhost/crazyfitness";
-		String username = "root";
-		String password = "123456";
+		String DB_URL;
+		String DB_USER;
+		String DB_PASSWORD;
+
+		if (System.getenv("CI") != null) {
+			DB_URL = System.getenv("DB_URL");
+			DB_USER = System.getenv("DB_USER");
+			DB_PASSWORD = System.getenv("DB_PASSWORD");
+		} else {
+			Dotenv env = Dotenv.load();
+			DB_URL = env.get("DB_URL");
+			DB_USER = env.get("DB_USER");
+			DB_PASSWORD = env.get("DB_PASSWORD");
+		}
 		try {
 
-			connect = DriverManager.getConnection(url, username, password);
+			connect = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new RuntimeException("Fail to connect to the database");
@@ -38,15 +41,15 @@ public class ProductDAO {
 
 	public boolean CreateProduct(Product product) throws DAOException {
 		String insertQuery = "INSERT INTO product (product_id,image_url,product_name,price,description) VALUES(?,?,?,?,?)";
-		String selectQuery = "SELECT product_name FROM product WHERE product_name = ?";
+		String selectQuery = "SELECT product_id FROM product WHERE product_id = ?";
 		try (Connection connect = getConnection();
 				PreparedStatement selectPst = connect.prepareStatement(selectQuery);
 				PreparedStatement insertPst = connect.prepareStatement(insertQuery);) {
 
-			selectPst.setString(1, product.getProduct_name());
+			selectPst.setInt(1, product.getProduct_id());
 			ResultSet rs = selectPst.executeQuery();
 			if (rs.next()) {
-				// Product name already exists, do not proceed with registration
+				// Product id already exists, do not allow in database
 				rs.close();
 				return false;
 			}

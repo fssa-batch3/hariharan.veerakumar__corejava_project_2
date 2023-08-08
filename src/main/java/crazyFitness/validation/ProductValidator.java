@@ -25,7 +25,7 @@ public class ProductValidator {
 		boolean match = false;
 		if(name == null)
 			return false;
-		try {
+	
 			String regex = "^[a-zA-Z0-9\\s-_]+$";
 			Pattern p = Pattern.compile(regex);
 			Matcher m = p.matcher(name);
@@ -35,15 +35,13 @@ public class ProductValidator {
 			} else {
 				System.out.println("The Product name is not valid");
 			}
-		} catch (Exception e) { 
-			System.out.println("Product name is not valid");
-		}
+		
 		return match; 
 	}
 	
 	public static boolean validateProductImage(String url) {
 		boolean match = true;
-		if(url == null) {
+		if(url == null || url.isEmpty()) {
 			match = false;
 		}
 		return match;
@@ -53,7 +51,7 @@ public class ProductValidator {
 		boolean match = true;
 		if(id > 0) {
 			System.out.println("The ID is valid");
-			match = true;
+			return true;
 		}
 		else if (id <= 0){	
 			System.out.println("The ID is Invalid");
@@ -79,12 +77,13 @@ public class ProductValidator {
 		System.out.println("Your product description in Valid");
 		return match;
 	}
+	
 	public static boolean validateProductPrice(int price) {
 		boolean match = false;
 		if(price < 0) {
 			return false;
 		}
-		try {
+		
 			String regex ="^\\d+(\\.\\d{1,2})?$";
 			Pattern p = Pattern.compile(regex);
 			Matcher m = p.matcher(String.valueOf(price));
@@ -95,9 +94,7 @@ public class ProductValidator {
 				System.out.println("The product price is Invalid");
 			}
 			
-		} catch (Exception e) {
-			System.out.println("The product price is Invalid");
-		}
+		
 		return match;
 	}
 }

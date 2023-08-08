@@ -13,6 +13,10 @@ public class TestValidateEmail {
 	
 	}
 	@Test
+	public void testUpperCaseEmail() {
+		assertFalse(UserValidator.validateEmail("HARI@gmail.com"));
+	}
+	@Test
 	public void testInvalidEmailMissingAt() {
 		assertFalse(UserValidator.validateEmail("harigmail.com"));
 	

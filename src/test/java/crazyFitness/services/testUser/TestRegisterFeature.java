@@ -68,7 +68,7 @@ public class TestRegisterFeature {
 	}
 	
 	@Test 
-	public void testUserNull() {
+	public void testNullUser() {
 		UserService userService = new UserService();
 		User user = null;
 		
@@ -81,7 +81,7 @@ public class TestRegisterFeature {
 	}
 	
 	@Test
-	public void testRegistrationSameUser() {
+	public void testRegistrationExistsingUser() {
 		UserService userService = new UserService();
 		User user = new User("Hari","haran",19,"hari10@gmail.com","Haripassword$10","9551096952","Erode");
 		try {
