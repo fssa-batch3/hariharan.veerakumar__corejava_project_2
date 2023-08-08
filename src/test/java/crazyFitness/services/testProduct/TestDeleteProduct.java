@@ -9,9 +9,9 @@ import org.junit.jupiter.api.Test;
 import crazyFitness.services.ProductService;
 import crazyFitness.services.exceptions.ServiceException;
 
-public class TestDeleteProduct {
+ class TestDeleteProduct {
 	@Test
-	public void testValidDelete() {
+	 void testValidDelete() {
 		ProductService productService = new ProductService();
 		try {
 			assertTrue(productService.ProductDelete(2));
@@ -22,7 +22,7 @@ public class TestDeleteProduct {
 	}
 
 	@Test
-	public void testInValidIDDelete() {
+	 void testInValidIDDelete() {
 		ProductService productService = new ProductService();
 		try {
 			assertFalse(productService.ProductDelete(2));
@@ -32,7 +32,7 @@ public class TestDeleteProduct {
 	}
 
 	@Test
-	public void testNegativeIdDelete() {
+	 void testNegativeIdDelete() {
 		ProductService productService = new ProductService();
 		try {
 			assertFalse(productService.ProductDelete(-2));

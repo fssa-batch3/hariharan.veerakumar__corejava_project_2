@@ -12,9 +12,6 @@ import crazyFitness.validation.exceptions.InvalidUserException;
 
 public class UserValidator {
 	
-	  private UserValidator() {
-		    throw new IllegalStateException("UserValidator class");
-		  }
 //	register user
 	public static boolean validateUser(User user) throws InvalidUserException {
 		if (user != null && validateName(user.getFname()) && validateName(user.getLname())

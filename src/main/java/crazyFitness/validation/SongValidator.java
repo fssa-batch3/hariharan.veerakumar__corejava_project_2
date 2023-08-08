@@ -7,9 +7,7 @@ import crazyFitness.model.Song;
 import crazyFitness.validation.exceptions.InvalidSongException;
 
 public class SongValidator {
-	  private SongValidator() {
-		    throw new IllegalStateException("UserValidator class");
-		  }
+
 	
 	public static boolean validateSong(Song song) throws InvalidSongException{
 		if(song != null && validateId(song.getSong_id()) && validateSongName(song.getSong_name()) && validateSongImage(song.getSong_image()) && validateSongURL(song.getSong_url())) {

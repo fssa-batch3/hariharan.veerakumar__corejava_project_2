@@ -6,14 +6,14 @@ import org.junit.jupiter.api.Test;
 
 import crazyFitness.validation.ProductValidator;
 
-public class TestProductPrice {
-	@Test
-	public void testValidPrice() {
+ class TestProductPrice {
+	@Test 
+	 void testValidPrice() {
 		assertTrue(ProductValidator.validateProductPrice(999));
 	}
 	
 	@Test
-	public void testInvalidPrice() {
+	 void testInvalidPrice() {
 		assertFalse(ProductValidator.validateProductPrice(-999));
 	}
 	

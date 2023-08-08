@@ -10,9 +10,9 @@ import crazyFitness.model.Product;
 import crazyFitness.services.ProductService;
 import crazyFitness.services.exceptions.ServiceException;
 
-public class TestUpdateProduct {
+ class TestUpdateProduct {
 @Test
-public void testValidUpdate() {
+ void testValidUpdate() {
 	ProductService productService = new ProductService();
 	Product product = new Product(1,"./../assets/images/dumbbells.jpg","Dumb Bells",1000,"Made up of rubber and iron");
 	try {
@@ -24,7 +24,7 @@ public void testValidUpdate() {
 }
  
 @Test
-public void testInvalidUpdate() {
+ void testInvalidUpdate() {
 	ProductService productService = new ProductService();
 	Product product = new Product(10,"./../assets/images/dumbbells.jpg","Dumb Bells",1000,"Made up of rubber and iron");
 	try {
@@ -35,7 +35,7 @@ public void testInvalidUpdate() {
 	}
 }
 @Test
-public void testNegativePriceUpdate() {
+ void testNegativePriceUpdate() {
 	ProductService productService = new ProductService();
 	Product product = new Product(1,"./../assets/images/dumbbells.jpg","Dumb Bells",-1000,"Made up of rubber and iron");
 	try {

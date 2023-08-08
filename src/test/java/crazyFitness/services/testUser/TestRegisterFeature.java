@@ -1,26 +1,18 @@
 package crazyFitness.services.testUser;
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
 
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import crazyFitness.dao.UserDAO;
+
 import crazyFitness.model.User;
 import crazyFitness.services.UserService;
 import crazyFitness.services.exceptions.ServiceException;
-import crazyFitness.validation.exceptions.InvalidUserException;
 
 
 
 	
-public class TestRegisterFeature {
+ class TestRegisterFeature {
 	
 //	private UserDAO userDAO;
 //
@@ -68,7 +60,7 @@ public class TestRegisterFeature {
 	}
 	
 	@Test  
-	public void testNullUser() {
+	 void testNullUser() {
 		UserService userService = new UserService();
 		User user = null;
 		
@@ -81,7 +73,7 @@ public class TestRegisterFeature {
 	}
 	
 	@Test
-	public void testRegistrationExistsingUser() {
+	 void testRegistrationExistsingUser() {
 		UserService userService = new UserService();
 		User user = new User("Hari","haran",19,"hari10@gmail.com","Haripassword$10","9551096952","Erode");
 		try {

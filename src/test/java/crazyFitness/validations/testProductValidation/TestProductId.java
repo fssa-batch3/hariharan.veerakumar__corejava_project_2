@@ -7,14 +7,14 @@ import org.junit.jupiter.api.Test;
 
 import crazyFitness.validation.ProductValidator;
 
-public class TestProductId {
+ class TestProductId {
 @Test
-public void testValidId() {
+ void testValidId() { 
 	assertTrue(ProductValidator.validateId(1));
 }
 
 @Test
-public void testInValidId() {
+void testInValidId() {
 	assertFalse(ProductValidator.validateId(0));
 }
 }

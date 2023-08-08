@@ -5,18 +5,18 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 import crazyFitness.validation.ProductValidator;
 
-public class TestProductName {
+ class TestProductName {
 	@Test
-	public void testValidName() {
+	 void testValidName() {
 		assertTrue(ProductValidator.validateProductName("DumbBells"));
 	}
 	
 	@Test
-	public void testInvalidName() {
+	 void testInvalidName() {
 		assertFalse(ProductValidator.validateProductName("myemail@example.com"));
-	}
+	} 
 	@Test
-	public void testInvalidNameSpecailCharacter() {
+	 void testInvalidNameSpecailCharacter() {
 		assertFalse(ProductValidator.validateProductName("username!"));
 	}
 

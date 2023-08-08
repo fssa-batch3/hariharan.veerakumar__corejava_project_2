@@ -6,18 +6,18 @@ import org.junit.jupiter.api.Test;
 
 import crazyFitness.validation.UserValidator;
 
-public class TestValidateAge {
+ class TestValidateAge {
 @Test
-public void testValidAge(){
+ void testValidAge(){
 	assertTrue(UserValidator.validateAge(19));
 	}
-
+ 
 @Test
-public void testInValidAgeLessThan10(){
+ void testInValidAgeLessThan10(){
 	assertFalse(UserValidator.validateAge(-5));
 	}
 @Test
-public void testValidAgeGreaterThan100(){
+ void testValidAgeGreaterThan100(){
 	assertFalse(UserValidator.validateAge(102));
 	}
 }

@@ -11,11 +11,11 @@ import crazyFitness.services.exceptions.*;
 import crazyFitness.services.ProductService; 
 import crazyFitness.model.Product; 
 
-public class TestAddProduct {
+ class TestAddProduct {
 	@Test
-	public void testCreateProduct() {
+	 void testCreateProduct() {
 		ProductService productService = new ProductService();
-		Product product = new Product(2,"./../assets/images/legmachine.jpg","Leg Machine",29999,"Used to stronger your leg");
+		Product product = new Product(1,"./../assets/images/Dumbbells.jpg","Dumb Bells",999,"Made up of Rubber and Iron");
 		try {
 			assertTrue(productService.ProductCreate(product));
 		}catch(ServiceException e){
@@ -23,8 +23,8 @@ public class TestAddProduct {
 			fail();
 		}
 	}
-	@Test
-	public void testNullProduct() { 
+	@Test 
+	 void testNullProduct() { 
 		ProductService productService = new ProductService();
 		Product product = null;
 		try {

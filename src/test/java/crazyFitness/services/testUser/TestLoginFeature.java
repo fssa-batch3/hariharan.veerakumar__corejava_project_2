@@ -9,9 +9,9 @@ import crazyFitness.services.*;
 
 import crazyFitness.services.exceptions.ServiceException;
 
-public class TestLoginFeature {
+ class TestLoginFeature {
 	@Test
-	public void testLoginSuccess() {
+	 void testLoginSuccess() {
 		UserService userService = new UserService();
 
 		try {
@@ -23,7 +23,7 @@ public class TestLoginFeature {
 	}
 	
 	@Test
-	public void testLoginNotSuccess() {
+	 void testLoginNotSuccess() {
 		UserService userService = new UserService();
 
 		try {
@@ -34,7 +34,7 @@ public class TestLoginFeature {
 	}
 	
 	@Test
-	public void testLoginWrongEmail() {
+	 void testLoginWrongEmail() {
 		UserService userService = new UserService();
 
 		try {
@@ -44,7 +44,7 @@ public class TestLoginFeature {
 		}
 	}
 	@Test
-	public void testLoginWrongPassword() {
+	 void testLoginWrongPassword() {
 		UserService userService = new UserService();
 
 		try {
