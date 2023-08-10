@@ -17,7 +17,7 @@ public class UserService {
 			if (userDAO.register(user)) {
 				System.out.println(user.getEmail() + " Sucessfully added");
 				return true;
-			} else {
+			} else { 
 				System.out.println("Registration not Unsuccessful!");
 				return false;
 			}
@@ -25,7 +25,7 @@ public class UserService {
 		} catch (DAOException | InvalidUserException e) {
 			throw new ServiceException(e);
 		}
-
+  
 	}
 
 

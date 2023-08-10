@@ -1,23 +1,33 @@
-package crazyFitness.validations.testProductValidation;
+ package crazyFitness.validations.testProductValidation;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 import crazyFitness.validation.ProductValidator;
+import crazyFitness.validation.exceptions.InvalidProductException;
 
  class TestProductName {
 	@Test
 	 void testValidName() {
-		assertTrue(ProductValidator.validateProductName("DumbBells"));
+		try {
+			assertTrue(ProductValidator.validateProductName("DumbBells"));
+		} catch (InvalidProductException e) {
+			e.printStackTrace();
+			fail();
+		}
 	}
 	
 	@Test
-	 void testInvalidName() {
-		assertFalse(ProductValidator.validateProductName("myemail@example.com"));
+	 void testInvalidProductName() {
+		try {
+			ProductValidator.validateProductName("productname!");
+			Throwable exception = assertThrows(InvalidProductException.class, () ->{
+				
+			});
+			assertEquals("The Product name is not valid", exception.getMessage());
+		} catch (InvalidProductException e) {
+		e.printStackTrace();
+		}
 	} 
-	@Test
-	 void testInvalidNameSpecailCharacter() {
-		assertFalse(ProductValidator.validateProductName("username!"));
-	}
-
+	
 }

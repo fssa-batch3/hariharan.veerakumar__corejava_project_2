@@ -5,22 +5,52 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
 import crazyFitness.validation.UserValidator;
+import crazyFitness.validation.exceptions.InvalidUserException;
 
- class TestValidatePhone { 
+ class TestValidatePhone {  
+	 Throwable exception;
   @Test
    void testValidPhoneNumber() {
-	  assertTrue(UserValidator.validatePhone("9842356365"));
+	  try {
+		assertTrue(UserValidator.validatePhone("9842356365"));
+	} catch (InvalidUserException e) {
+		e.printStackTrace();
+		fail();
+	}
   }
   @Test
    void testInValidPhoneNumber() {
-	  assertFalse(UserValidator.validatePhone("1234567890"));
+	 
+	  try {
+		  UserValidator.validatePhone("1234567890");
+		  exception = assertThrows(InvalidUserException.class , () -> {  
+		  });
+		  assertEquals("Invalid phone number",exception.getMessage());
+	} catch (InvalidUserException e) {
+		e.printStackTrace();
+	}
   }
   @Test
    void testInValidPhoneNumberLesserLength() {
-	  assertFalse(UserValidator.validatePhone("12345"));
+	
+	  try {
+		  UserValidator.validatePhone("12345");
+		  exception = assertThrows(InvalidUserException.class , () -> {  
+		  });
+		  assertEquals("Invalid phone number",exception.getMessage());
+	} catch (InvalidUserException e) {
+		e.printStackTrace();
+	}
   }
   @Test
    void testInValidPhoneNumberGreaterLength() {
-	  assertFalse(UserValidator.validatePhone("123456789098765"));
+	  try {
+		  UserValidator.validatePhone("123456789098765");
+		  exception = assertThrows(InvalidUserException.class , () -> {  
+		  });
+		  assertEquals("Invalid phone number",exception.getMessage());
+	} catch (InvalidUserException e) {
+		e.printStackTrace();
+	}
   }
 }

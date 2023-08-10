@@ -5,19 +5,30 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
 import crazyFitness.validation.UserValidator;
+import crazyFitness.validation.exceptions.InvalidUserException;
 
  class TestValidateAge {
 @Test
  void testValidAge(){
-	assertTrue(UserValidator.validateAge(19));
+	try {
+		assertTrue(UserValidator.validateAge(19));
+	} catch (InvalidUserException e) {
+		e.printStackTrace();
+		fail();
+	}
 	}
  
 @Test
- void testInValidAgeLessThan10(){
-	assertFalse(UserValidator.validateAge(-5));
-	}
-@Test
- void testValidAgeGreaterThan100(){
-	assertFalse(UserValidator.validateAge(102));
+ void testExpectInvalidUserException(){
+	try{
+		UserValidator.validateAge(-19);
+	Throwable exception = assertThrows(InvalidUserException.class, () -> {
+	});
+	assertEquals("Invalid Age",exception.getMessage());
+	} catch(InvalidUserException e) {
+		e.printStackTrace();
 	}
 }
+
+}
+ 

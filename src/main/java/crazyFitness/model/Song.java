@@ -1,49 +1,49 @@
 package crazyFitness.model;
 
 public class Song {
-  public int song_id;
-  public String song_name;
-  public String song_image;
-  public String song_url;
+  public int songId;
+  public String songName;
+  public String songImage;
+  public String songUrl;
   
-public Song(int song_id, String song_name, String song_image, String song_url) {
+public Song(int songId, String songName, String songImage, String songUrl) {
 	super();
-	this.song_id = song_id;
-	this.song_name = song_name;
-	this.song_image = song_image;
-	this.song_url = song_url;
+	this.songId = songId;
+	this.songName = songName;
+	this.songImage = songImage;
+	this.songUrl = songUrl;
 }
 public Song() {
 	
 }
-public int getSong_id() {
-	return song_id;
+public int getSongId() {
+	return songId;
 }
-public void setSong_id(int song_id) {
-	this.song_id = song_id;
+public void setSongId(int songId) {
+	this.songId = songId;
 }
-public String getSong_name() {
-	return song_name;
+public String getSongName() {
+	return songName; 
 }
-public void setSong_name(String song_name) {
-	this.song_name = song_name;
+public void setSongName(String songName) {
+	this.songName = songName;
 }
-public String getSong_image() {
-	return song_image;
+public String getSongImage() {
+	return songImage;
 }
-public void setSong_image(String song_image) {
-	this.song_image = song_image;
+public void setSongImage(String songImage) {
+	this.songImage = songImage;
 }
-public String getSong_url() {
-	return song_url;
+public String getSongUrl() {
+	return songUrl;
 }
-public void setSong_url(String song_url) {
-	this.song_url = song_url;
+public void setSongUrl(String songUrl) {
+	this.songUrl = songUrl;
 }
 @Override
 public String toString() {
-	return "Song [song_id=" + song_id + ", song_name=" + song_name + ", song_image=" + song_image + ", song_url="
-			+ song_url + "]";
+	return "Song [song_id=" + songId + ", song_name=" + songName + ", song_image=" + songImage + ", song_url="
+			+ songUrl + "]"; 
 }
 
 

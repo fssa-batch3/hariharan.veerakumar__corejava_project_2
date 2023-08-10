@@ -15,9 +15,9 @@ import crazyFitness.model.Product;
 	@Test
 	 void testCreateProduct() {
 		ProductService productService = new ProductService();
-		Product product = new Product(1,"./../assets/images/Dumbbells.jpg","Dumb Bells",999,"Made up of Rubber and Iron");
+		Product product = new Product(2,"./../assets/images/LegMachine.jpg","Leg Machine",29999,"Used to strength your leg");
 		try {
-			assertTrue(productService.ProductCreate(product));
+			assertTrue(productService.productCreate(product));
 		}catch(ServiceException e){
 			e.printStackTrace();
 			fail();
@@ -28,7 +28,7 @@ import crazyFitness.model.Product;
 		ProductService productService = new ProductService();
 		Product product = null;
 		try {
-			assertFalse(productService.ProductCreate(product));
+			assertFalse(productService.productCreate(product));
 		} catch (ServiceException e) {
 			e.printStackTrace();
 		}

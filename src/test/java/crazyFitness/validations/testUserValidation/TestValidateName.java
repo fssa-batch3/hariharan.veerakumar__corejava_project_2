@@ -5,22 +5,56 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
 import crazyFitness.validation.UserValidator;
+import crazyFitness.validation.exceptions.InvalidUserException;
 
  class TestValidateName {
+		Throwable exception;
 @Test
  void testValidName() {
-	assertTrue(UserValidator.validateName("Hariharan"));
+
+	try {
+		assertTrue(UserValidator.validateName("Hariharan"));
+	} catch (InvalidUserException e) {
+		e.printStackTrace();
+		fail();
+	}
+}
+@Test 
+ void testInValidNameUsingNumbersExpectValidation() {
+	try {
+		UserValidator.validateName("123456");
+		 exception = assertThrows(InvalidUserException.class, () -> {
+		});
+		assertEquals("Invalid name", exception.getMessage());
+	} catch (InvalidUserException e) {
+		e.printStackTrace();
+	
+	}
+
 }
 @Test
- void testInValidNameUsingNumbers() {
-	assertFalse(UserValidator.validateName("123456"));
+ void testInValidNameLesserLengthExpectValidation() {
+	try {
+	UserValidator.validateName("Ha");
+		 exception = assertThrows(InvalidUserException.class, () -> {
+		});
+		assertEquals("Invalid name", exception.getMessage());
+	} catch (InvalidUserException e) {
+		e.printStackTrace();
+		
+	}
 }
 @Test
- void testInValidNameLesserLength() {
-	assertFalse(UserValidator.validateName("Ha"));
-}
-@Test
- void testInValidNameGreaterLength() {
-	assertFalse(UserValidator.validateName("Hariharanvhariharanvhariharanv"));
+ void testInValidNameGreaterLengthExpectValidation() {
+
+	try {
+		UserValidator.validateName("Hariharanvhariharanvhariharanv");
+			 exception = assertThrows(InvalidUserException.class, () -> {
+			});
+			assertEquals("Invalid name", exception.getMessage());
+		} catch (InvalidUserException e) {
+			e.printStackTrace();
+			
+		}
 } 
 }

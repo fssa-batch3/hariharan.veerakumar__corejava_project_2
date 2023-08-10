@@ -12,11 +12,11 @@ public class SongService {
 		SongDAO songDAO = new SongDAO();
 		try {
 			SongValidator.validateSong(song); 
-			if (songDAO.CreateSong(song)) {
-				System.out.println( song.getSong_name() + " added Successfully");
+			if (songDAO.createSong(song)) {
+				System.out.println( song.getSongName() + " added Successfully");
 				return true;
 			} else {
-				System.out.println( song.getSong_name() + " adding not Successful");
+				System.out.println( song.getSongName() + " adding not Successful");
 				return false;
 			}
 		} catch (DAOException | InvalidSongException e) {

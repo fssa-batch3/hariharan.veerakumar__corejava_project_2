@@ -1,57 +1,57 @@
 package crazyFitness.model;
 
 public class Product {
-	public String product_image;
-	public String product_name;
-	public int product_price;
-	public String descrption;
-	public int product_id;
+	public String productImage;
+	public String productName;
+	public int productPrice;
+	public String productDescrption;
+	public int productId;
 	
-	public String getProduct_image() {
-		return product_image;
+	public String getProductImage() { 
+		return productImage;
 	}
-	public void setProduct_image(String product_image) {
-		this.product_image = product_image;
+	public void setProductImage(String productImage) {
+		this.productImage = productImage;
 	}
-	public String getProduct_name() {
-		return product_name;
+	public String getProductName() {
+		return productName;
 	}
-	public void setProduct_name(String product_name) {
-		this.product_name = product_name;
+	public void setProductName(String productName) {
+		this.productName = productName;
 	}
-	public int getProduct_price() {
-		return product_price;
+	public int getProductPrice() {
+		return productPrice;
 	}
-	public void setProduct_price(int product_price) {
-		this.product_price = product_price;
+	public void setProductPrice(int productPrice) {
+		this.productPrice = productPrice;
 	}
-	public String getDescrption() {
-		return descrption;
+	public String getProductDescrption() {
+		return productDescrption;
 	}
-	public void setDescrption(String descrption) {
-		this.descrption = descrption;
+	public void setProductDescrption(String productDescrption) {
+		this.productDescrption = productDescrption;
 	}
-	public int getProduct_id() {
-		return product_id;
+	public int getProductId() {
+		return productId;
 	}
-	public void setProduct_id(int product_id) {
-		this.product_id = product_id;
+	public void setProductId(int productId) {
+		this.productId = productId;
 	}
-	public Product(int product_id,String product_image, String product_name, int product_price, String descrption ) {
+	public Product(int productId,String productImage, String productName, int productPrice, String productDescrption ) {
 		super();
-		this.product_id = product_id;
-		this.product_image = product_image;
-		this.product_name = product_name;
-		this.product_price = product_price;
-		this.descrption = descrption;
+		this.productId = productId;
+		this.productImage = productImage;
+		this.productName = productName;
+		this.productPrice = productPrice;
+		this.productDescrption = productDescrption;
 		
 	}
 	
 	
 	@Override
 	public String toString() {
-		return "Product [product_image=" + product_image + ", product_name=" + product_name + ", product_price="
-				+ product_price + ", descrption=" + descrption + ", product_id=" + product_id + "]";
+		return "Product [product_image=" + productImage + ", product_name=" + productName + ", product_price="
+				+ productPrice + ", descrption=" + productDescrption + ", product_id=" + productId + "]";
 	}
 	
 	

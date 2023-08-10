@@ -2,54 +2,33 @@ package crazyFitness.dao;
 
 import java.sql.Connection;
 
-import java.sql.DriverManager;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 import crazyFitness.model.User;
-import io.github.cdimascio.dotenv.Dotenv;
+import crazyFitness.util.ConnectionDb;
+import crazyFitness.util.DatabaseException;
+
 import crazyFitness.dao.exceptions.*;
 
 public class UserDAO {
 
-	// connecting to database
-	public static Connection getConnection() throws SQLException {
-		Connection connect = null;
-		String DB_URL;
-		String DB_USER;
-		String DB_PASSWORD;
-
-		if (System.getenv("CI") != null) {
-			DB_URL = System.getenv("DB_URL");
-			DB_USER = System.getenv("DB_USER");
-			DB_PASSWORD = System.getenv("DB_PASSWORD");
-		} else {
-			Dotenv env = Dotenv.load();
-			DB_URL = env.get("DB_URL");
-			DB_USER = env.get("DB_USER");
-			DB_PASSWORD = env.get("DB_PASSWORD");
-		}
-		connect = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
-
-		return connect;
-	}
 
 	// register user
 	public boolean register(User user) throws DAOException {
 		final String insertQuery = "INSERT INTO user (first_name,last_name,age,email,password,phone,address) VALUES (?,?,?,?,?,?,?)";
 		final String selectQuery = "SELECT email FROM user WHERE email = ?";
 
-		try (Connection connect = getConnection();
+		try (Connection connect = ConnectionDb.getConnection();
 				PreparedStatement selectPst = connect.prepareStatement(selectQuery);
 				PreparedStatement insertPst = connect.prepareStatement(insertQuery)) {
 
 			// Check if the email already exists
 			selectPst.setString(1, user.getEmail());
 			ResultSet rs = selectPst.executeQuery();
-			if (rs.next()) {
+			if (rs.next()) { 
 				// Email already exists, do not proceed with registration
 				rs.close();
 				return false;
@@ -67,16 +46,16 @@ public class UserDAO {
 
 			int rows = insertPst.executeUpdate();
 			return (rows == 1);
-		} catch (SQLException e) {
+		} catch (SQLException | DatabaseException e) {
 			throw new DAOException(e);
 		}
 	}
 
-// login user
+// login user 
 	public User getUserByEmail(String email) throws DAOException {
 		final String selectQuery = "SELECT * FROM user WHERE email = ?";
 
-		try (Connection connect = getConnection(); PreparedStatement pst = connect.prepareStatement(selectQuery)) {
+		try (Connection connect = ConnectionDb.getConnection(); PreparedStatement pst = connect.prepareStatement(selectQuery)) {
 			pst.setString(1, email);
 
 			ResultSet rs = pst.executeQuery();
@@ -92,7 +71,7 @@ public class UserDAO {
 
 				return user;
 			}
-		} catch (SQLException e) {
+		} catch (SQLException | DatabaseException e) {
 			throw new DAOException(e);
 		}
 
@@ -102,7 +81,7 @@ public class UserDAO {
 	// update user
 	public boolean update(User user) throws DAOException {
 		final String updateQuery = "UPDATE user SET first_name= ?, last_name = ?,age = ?,password = ?,phone=?,address = ? WHERE email = ?";
-		try (Connection connect = getConnection(); PreparedStatement pst = connect.prepareStatement(updateQuery)) {
+		try (Connection connect = ConnectionDb.getConnection(); PreparedStatement pst = connect.prepareStatement(updateQuery)) {
 			pst.setString(1, user.getFname());
 			pst.setString(2, user.getLname());
 			pst.setInt(3, user.getAge());
@@ -114,7 +93,7 @@ public class UserDAO {
 			int rows = pst.executeUpdate();
 			return (rows == 1);
 
-		} catch (SQLException e) {
+		} catch (SQLException | DatabaseException e) {
 			throw new DAOException(e);
 		}
 

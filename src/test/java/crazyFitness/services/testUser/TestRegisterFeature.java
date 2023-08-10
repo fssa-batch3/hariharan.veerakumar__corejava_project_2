@@ -61,7 +61,7 @@ import crazyFitness.services.exceptions.ServiceException;
 	
 	@Test  
 	 void testNullUser() {
-		UserService userService = new UserService();
+		UserService userService = new UserService(); 
 		User user = null;
 		
 		try { 
@@ -75,7 +75,7 @@ import crazyFitness.services.exceptions.ServiceException;
 	@Test
 	 void testRegistrationExistsingUser() {
 		UserService userService = new UserService();
-		User user = new User("Hari","haran",19,"hari10@gmail.com","Haripassword$10","9551096952","Erode");
+		User user = new User("Hari","haran",19,"hari10haran@gmail.com","Haripassword$10","9551096952","Erode");
 		try {
 			assertFalse(userService.registerUser(user));
 		} catch ( ServiceException e) {

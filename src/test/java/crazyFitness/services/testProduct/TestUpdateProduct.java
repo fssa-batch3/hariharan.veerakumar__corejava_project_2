@@ -16,7 +16,7 @@ import crazyFitness.services.exceptions.ServiceException;
 	ProductService productService = new ProductService();
 	Product product = new Product(1,"./../assets/images/dumbbells.jpg","Dumb Bells",1000,"Made up of rubber and iron");
 	try {
-		assertTrue(productService.ProductUpdate(product));
+		assertTrue(productService.productUpdate(product));
 	}catch(ServiceException e){
 		e.printStackTrace();
 		fail();
@@ -28,7 +28,7 @@ import crazyFitness.services.exceptions.ServiceException;
 	ProductService productService = new ProductService();
 	Product product = new Product(10,"./../assets/images/dumbbells.jpg","Dumb Bells",1000,"Made up of rubber and iron");
 	try {
-		assertFalse(productService.ProductUpdate(product));
+		assertFalse(productService.productUpdate(product));
 	}catch(ServiceException e){
 		e.printStackTrace();
 		
@@ -39,7 +39,7 @@ import crazyFitness.services.exceptions.ServiceException;
 	ProductService productService = new ProductService();
 	Product product = new Product(1,"./../assets/images/dumbbells.jpg","Dumb Bells",-1000,"Made up of rubber and iron");
 	try {
-		assertFalse(productService.ProductUpdate(product));
+		assertFalse(productService.productUpdate(product));
 	}catch(ServiceException e){
 		e.printStackTrace();
 		

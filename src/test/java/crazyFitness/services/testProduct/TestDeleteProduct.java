@@ -14,7 +14,7 @@ import crazyFitness.services.exceptions.ServiceException;
 	 void testValidDelete() {
 		ProductService productService = new ProductService();
 		try {
-			assertTrue(productService.ProductDelete(2));
+			assertTrue(productService.productDelete(2));
 		} catch (ServiceException e) {
 			e.printStackTrace();
 			fail();
@@ -25,7 +25,7 @@ import crazyFitness.services.exceptions.ServiceException;
 	 void testInValidIDDelete() {
 		ProductService productService = new ProductService();
 		try {
-			assertFalse(productService.ProductDelete(2));
+			assertFalse(productService.productDelete(2));
 		} catch (ServiceException e) {
 			e.printStackTrace();
 		}
@@ -35,7 +35,7 @@ import crazyFitness.services.exceptions.ServiceException;
 	 void testNegativeIdDelete() {
 		ProductService productService = new ProductService();
 		try {
-			assertFalse(productService.ProductDelete(-2));
+			assertFalse(productService.productDelete(-2));
 		} catch (ServiceException e) {
 			e.printStackTrace();
 		}

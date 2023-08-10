@@ -1,58 +1,70 @@
 package crazyFitness.services;
 
+import java.util.List;
+
 import crazyFitness.dao.ProductDAO;
 import crazyFitness.dao.exceptions.DAOException;
 import crazyFitness.model.Product;
 import crazyFitness.services.exceptions.ServiceException;
 import crazyFitness.validation.ProductValidator;
 import crazyFitness.validation.exceptions.InvalidProductException;
-import crazyFitness.validation.exceptions.InvalidUserException;
+
 
 public class ProductService {
-	public boolean ProductCreate(Product product) throws ServiceException {
+// create product 
+	public boolean productCreate(Product product) throws ServiceException {
 		ProductDAO productDAO = new ProductDAO();
 		try {
 			ProductValidator.validateProduct(product);
-			if (productDAO.CreateProduct(product)) {
-				System.out.println( product.getProduct_name() + " Successfully added");
+			if (productDAO.createProduct(product)) {
+				System.out.println( product.getProductName() + " Successfully added");
 				return true;
 			} else {
-				System.out.println( product.getProduct_name() + " creating not successful");
+				System.out.println( product.getProductName() + " creating not successful");
 				return false;
 			} 
 		} catch (DAOException | InvalidProductException e) {
 			throw new ServiceException(e);
-		}
+		} 
 	}
-
-	public boolean ProductUpdate(Product product) throws ServiceException {
+	
+//list product
+    public List<Product> getAllProducts() throws ServiceException {
+        try {
+            return ProductDAO.getAllProducts();
+        } catch (DAOException e) {
+            throw new ServiceException(e);
+        }
+    }
+// update product
+	public boolean productUpdate(Product product) throws ServiceException {
 		ProductDAO productDAO = new ProductDAO();
 		try {
 			ProductValidator.validateProduct(product);
-			if (productDAO.UpdateProduct(product)) {
-				System.out.println( product.getProduct_name() + " Successfully Updated");
+			if (productDAO.updateProduct(product)) {
+				System.out.println( product.getProductName() + " Successfully Updated");
 				return true;
 			} else {
-				System.out.println( product.getProduct_name() + " Updating not successful");
+				System.out.println( product.getProductName() + " Updating not successful");
 				return false;
 			}
 		} catch (DAOException | InvalidProductException e) {
 			throw new ServiceException(e);
 		}
 	}
-
-	public boolean ProductDelete(int id) throws ServiceException {
+// delete product
+	public boolean productDelete(int id) throws ServiceException {
 		ProductDAO productDAO = new ProductDAO();
 		try {
 			ProductValidator.validateId(id);
-			if (productDAO.DeleteProduct(id)) {
+			if (productDAO.deleteProduct(id)) {
 				System.out.println( id + " deleted Successfully");
 				return true;
 			} else {
 				System.out.println( id + " unable to delete");
 				return false;
 			}
-		} catch (DAOException e) {
+		} catch (DAOException | InvalidProductException e) {
 			throw new ServiceException(e);
 		}
 	}

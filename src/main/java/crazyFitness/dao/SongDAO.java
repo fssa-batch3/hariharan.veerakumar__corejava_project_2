@@ -8,19 +8,18 @@ import java.sql.SQLException;
 
 import crazyFitness.dao.exceptions.DAOException;
 import crazyFitness.model.Song;
-
+import crazyFitness.util.ConnectionDb;
+import crazyFitness.util.DatabaseException;
 
 public class SongDAO {
 
-
-
-	public boolean CreateSong(Song song) throws DAOException {
+	public boolean createSong(Song song) throws DAOException {
 		String insertQuery = "INSERT INTO song (song_id, song_name, song_image, song_url) VALUES(?,?,?,?)";
 		String selectQuery = "SELECT song_id FROM song WHERE song_id = ?";
-		try (Connection connect = UserDAO.getConnection();
+		try (Connection connect = ConnectionDb.getConnection();
 				PreparedStatement selectPst = connect.prepareStatement(selectQuery);
 				PreparedStatement insertPst = connect.prepareStatement(insertQuery)) {
-			selectPst.setInt(1, song.getSong_id());
+			selectPst.setInt(1, song.getSongId());
 			ResultSet rs = selectPst.executeQuery();
 			if (rs.next()) {
 				rs.close();
@@ -28,13 +27,13 @@ public class SongDAO {
 			}
 			rs.close();
 
-			insertPst.setInt(1, song.getSong_id());
-			insertPst.setString(2, song.getSong_name());
-			insertPst.setString(3, song.getSong_image());
-			insertPst.setString(4, song.getSong_url());
+			insertPst.setInt(1, song.getSongId());
+			insertPst.setString(2, song.getSongName());
+			insertPst.setString(3, song.getSongImage());
+			insertPst.setString(4, song.getSongUrl());
 			int rows = insertPst.executeUpdate();
 			return (rows == 1);
-		} catch (SQLException e) {
+		} catch (SQLException | DatabaseException e) {
 			throw new DAOException(e);
 		}
 	}

@@ -1,9 +1,5 @@
 package crazyFitness.model;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-
 
 
 public class User {
@@ -15,7 +11,7 @@ public class User {
 	public String password;
 	private String phone;
 	private String address;
-	
+	 
 	
 	
 	
