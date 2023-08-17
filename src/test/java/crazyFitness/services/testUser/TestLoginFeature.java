@@ -21,7 +21,7 @@ import crazyFitness.services.exceptions.ServiceException;
 			fail();
 		}
 	}
-	
+	 
 	@Test
 	 void testLoginNotSuccess() {
 		UserService userService = new UserService();

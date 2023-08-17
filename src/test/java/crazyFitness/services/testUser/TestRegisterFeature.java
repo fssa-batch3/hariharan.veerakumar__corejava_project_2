@@ -58,7 +58,7 @@ import crazyFitness.services.exceptions.ServiceException;
 			fail();
 		}	
 	}
-	
+	 
 	@Test  
 	 void testNullUser() {
 		UserService userService = new UserService(); 

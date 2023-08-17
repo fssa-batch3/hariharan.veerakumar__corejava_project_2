@@ -26,7 +26,7 @@ public class ProductDAO {
 			ResultSet rs = selectPst.executeQuery();
 			if (rs.next()) {
 				// Product id already exists, do not allow in database
-				rs.close();
+				rs.close(); 
 				return false; 
 			}
 			rs.close();

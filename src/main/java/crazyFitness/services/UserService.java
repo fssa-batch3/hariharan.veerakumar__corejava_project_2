@@ -28,7 +28,7 @@ public class UserService {
   
 	}
 
-
+ 
 
 	public boolean login(String email, String providedPassword) throws ServiceException {
 		try {

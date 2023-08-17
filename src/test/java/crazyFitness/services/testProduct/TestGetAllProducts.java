@@ -5,21 +5,21 @@ import static org.junit.jupiter.api.Assertions.fail;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
-
-import crazyFitness.dao.ProductDAO;
-import crazyFitness.dao.exceptions.DAOException;
 import crazyFitness.model.Product;
+import crazyFitness.services.ProductService;
+import crazyFitness.services.exceptions.ServiceException;
 
 class TestGetAllProducts {
  @Test
  void testGetAllProductsSuccess() {
 	 try {
-		List<Product> products = ProductDAO.getAllProducts(); 
+		 ProductService productService = new ProductService();
+		List<Product> products = productService.getAllProductsList(); 
 		for(Product product : products) {
 			System.out.println(product.getProductId() + " - " + product.getProductImage()+ " - " + product.getProductName() 
 			+ " - "+ product.getProductPrice() + " - " +product.getProductDescrption());
 		}
-	} catch (DAOException e) {
+	} catch (ServiceException e) {
 		e.printStackTrace();
 		fail();
 	}

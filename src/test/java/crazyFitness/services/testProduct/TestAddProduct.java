@@ -23,7 +23,7 @@ import crazyFitness.model.Product;
 			fail();
 		}
 	}
-	@Test 
+	@Test  
 	 void testNullProduct() { 
 		ProductService productService = new ProductService();
 		Product product = null;

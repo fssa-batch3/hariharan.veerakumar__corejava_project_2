@@ -33,7 +33,7 @@ public class UserDAO {
 				rs.close();
 				return false;
 			}
-			rs.close();
+			rs.close(); 
 
 			// If the email doesn't exist, proceed with the registration
 			insertPst.setString(1, user.getFname());

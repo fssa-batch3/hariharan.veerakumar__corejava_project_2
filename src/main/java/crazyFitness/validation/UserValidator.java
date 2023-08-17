@@ -22,7 +22,7 @@ public class UserValidator {
  
 	} 
 
-//	login user
+//	login user 
 	public static boolean validateLogin(String email, String providedPassword) throws InvalidUserException {
 		UserDAO userDAO = new UserDAO();
 		try {

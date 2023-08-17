@@ -20,7 +20,7 @@ class TestValidateEmail {
 
 	}
 
-	@Test
+	@Test 
 	void testInvalidEmailMissingAtExpectValidation() {
 		try {
 			UserValidator.validateEmail("harigmail.com");
