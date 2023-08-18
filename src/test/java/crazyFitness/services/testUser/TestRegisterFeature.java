@@ -1,6 +1,7 @@
 package crazyFitness.services.testUser;
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.sql.Connection;
 
 import org.junit.jupiter.api.Test;
 
@@ -8,6 +9,8 @@ import org.junit.jupiter.api.Test;
 import crazyFitness.model.User;
 import crazyFitness.services.UserService;
 import crazyFitness.services.exceptions.ServiceException;
+import crazyFitness.util.ConnectionDb;
+import crazyFitness.util.DatabaseException;
 
 
 
@@ -50,7 +53,7 @@ import crazyFitness.services.exceptions.ServiceException;
 	@Test
 	public void testRegistrationSuccess() {
 		UserService userService = new UserService();
-		User user = new User("Hari","haran",19,"hari10haran@gmail.com","Haripassword$10","9551096952","Erode");
+		User user = new User("Hari","haran",19,"hariharan@gmail.com","Haripassword$10","9551096952","Erode");
 		try {
 			assertTrue(userService.registerUser(user));
 		} catch ( ServiceException e) {
@@ -83,5 +86,7 @@ import crazyFitness.services.exceptions.ServiceException;
 
 		}
 	}
+	
+	
 
 }
