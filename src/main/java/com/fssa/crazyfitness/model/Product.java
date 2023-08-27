@@ -1,11 +1,11 @@
 package com.fssa.crazyfitness.model;
 
 public class Product {
-	public String productImage;
-	public String productName;
-	public int productPrice;
-	public String productDescrption;
-	public int productId;
+	private String productImage;
+	private String productName;
+	private int productPrice;
+	private String productDescrption;
+	private int productId;
 	
 	public String getProductImage() { 
 		return productImage;

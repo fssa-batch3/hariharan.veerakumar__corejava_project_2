@@ -51,7 +51,7 @@ import  com.fssa.crazyfitness.services.exceptions.ServiceException;
 //    }
 	
 	@Test
-	public void testRegistrationSuccess() {
+	 void testRegistrationSuccess() {
 		UserService userService = new UserService();
 		User user = new User("Hari","haran",19,"hariharan@gmail.com","Haripassword$10","9551096952","Erode");
 		try {
