@@ -10,39 +10,62 @@ import java.util.ArrayList;
 import com.fssa.crazyfitness.dao.exceptions.DAOException;
 import com.fssa.crazyfitness.model.Product;
 import com.fssa.crazyfitness.util.ConnectionDb;
-import com.fssa.crazyfitness.util.DatabaseException;
 
 public class ProductDAO {
 
-// create product
-	public boolean createProduct(Product product) throws DAOException {
-		final String insertQuery = "INSERT INTO product (product_id,image_url,product_name,price,description) VALUES(?,?,?,?,?)";
-		final String selectQuery = "SELECT product_id FROM product WHERE product_id = ?";
+	/**
+	 * @param productName
+	 * @return
+	 * @throws SQLException
+	 */
+	public boolean productNameCheck(String productName) throws SQLException {
+		final String selectQuery = "SELECT product_name FROM product WHERE product_name = ?";
+		ResultSet rs = null;
 		try (Connection connect = ConnectionDb.getConnection();
-				PreparedStatement selectPst = connect.prepareStatement(selectQuery);
-				PreparedStatement insertPst = connect.prepareStatement(insertQuery);) {
-
-			selectPst.setInt(1, product.getProductId());
-			ResultSet rs = selectPst.executeQuery();
+				PreparedStatement selectPst = connect.prepareStatement(selectQuery);) {
+			selectPst.setString(1, productName);
+			rs = selectPst.executeQuery();
 			if (rs.next()) {
-				// Product id already exists, do not allow in database
-				rs.close(); 
-				return false; 
+				// Product name already exists, do not allow in database
+				return false;
 			}
+			return true;
+		} finally {
 			rs.close();
-			insertPst.setInt(1, product.getProductId());
-			insertPst.setString(2, product.getProductImage());
-			insertPst.setString(3, product.getProductName());
-			insertPst.setInt(4, product.getProductPrice());
-			insertPst.setString(5, product.getProductDescrption());
-			int rows = insertPst.executeUpdate();
-			return (rows == 1);
-		} catch (SQLException | DatabaseException  e) {
+		}
+	}
+
+// create product
+	/**
+	 * @param product
+	 * @return
+	 * @throws DAOException
+	 */
+	public boolean createProduct(Product product) throws DAOException {
+		final String insertQuery = "INSERT INTO product (image_url,product_name,price,description) VALUES(?,?,?,?)";
+
+		try (Connection connect = ConnectionDb.getConnection();
+				PreparedStatement insertPst = connect.prepareStatement(insertQuery);) {
+			if (productNameCheck(product.getProductName())) {
+				insertPst.setString(1, product.getProductImage());
+				insertPst.setString(2, product.getProductName());
+				insertPst.setInt(3, product.getProductPrice());
+				insertPst.setString(4, product.getProductDescrption());
+				int rows = insertPst.executeUpdate();
+				return (rows == 1);
+			} else {
+				throw new DAOException("This product already added");
+			}
+		} catch (SQLException e) {
 			throw new DAOException(e);
 		}
 	}
 
 //	Read product
+	/**
+	 * @return
+	 * @throws DAOException
+	 */
 	public static List<Product> getAllProducts() throws DAOException {
 		final String selectAllProductsQuery = "SELECT * FROM product";
 		List<Product> productList = new ArrayList<>();
@@ -60,13 +83,18 @@ public class ProductDAO {
 				Product product = new Product(productId, productImage, name, price, description);
 				productList.add(product);
 			}
-		} catch (SQLException | DatabaseException e) {
+		} catch (SQLException e) {
 			throw new DAOException(e);
 		}
 		return productList;
 	}
 
 	// update product
+	/**
+	 * @param product
+	 * @return
+	 * @throws DAOException
+	 */
 	public boolean updateProduct(Product product) throws DAOException {
 		final String updateQuery = "UPDATE product SET image_url = ?, product_name =?, price = ? ,description =? WHERE product_id =?";
 		try (Connection connect = ConnectionDb.getConnection();
@@ -78,13 +106,18 @@ public class ProductDAO {
 			updatePst.setInt(5, product.getProductId());
 			int rows = updatePst.executeUpdate();
 			return (rows == 1);
-		} catch (SQLException | DatabaseException e) {
+		} catch (SQLException e) {
 			throw new DAOException(e);
 		}
 
 	}
 
 //	delete product
+	/**
+	 * @param id
+	 * @return
+	 * @throws DAOException
+	 */
 	public boolean deleteProduct(int id) throws DAOException {
 		final String deleteQuery = "DELETE FROM product WHERE product_id = ?";
 		try (Connection connect = ConnectionDb.getConnection();
@@ -92,7 +125,7 @@ public class ProductDAO {
 			deletePst.setInt(1, id);
 			int rows = deletePst.executeUpdate();
 			return (rows == 1);
-		} catch (SQLException | DatabaseException e) {
+		} catch (SQLException e) {
 			throw new DAOException(e);
 		}
 	}

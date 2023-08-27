@@ -37,6 +37,17 @@ public class Product {
 	public void setProductId(int productId) {
 		this.productId = productId;
 	}
+	
+	public Product(String productImage, String productName, int productPrice, String productDescrption ) {
+		super();
+	
+		this.productImage = productImage;
+		this.productName = productName;
+		this.productPrice = productPrice;
+		this.productDescrption = productDescrption;
+		
+	}
+	
 	public Product(int productId,String productImage, String productName, int productPrice, String productDescrption ) {
 		super();
 		this.productId = productId;

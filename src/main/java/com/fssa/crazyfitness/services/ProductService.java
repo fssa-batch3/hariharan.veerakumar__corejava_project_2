@@ -12,10 +12,17 @@ import com.fssa.crazyfitness.validations.exceptions.InvalidProductException;
 
 public class ProductService {
 // create product 
+	/*
+	 * 
+	 * 
+	 * 
+	 * 
+	 * */
 	public boolean productCreate(Product product) throws ServiceException {
 		ProductDAO productDAO = new ProductDAO();
 		try {
 			ProductValidator.validateProduct(product);
+			////productDAO.exists product id()
 			if (productDAO.createProduct(product)) {
 				System.out.println( product.getProductName() + " Successfully added");
 				return true;
@@ -40,7 +47,7 @@ public class ProductService {
 	public boolean productUpdate(Product product) throws ServiceException {
 		ProductDAO productDAO = new ProductDAO();
 		try {
-			ProductValidator.validateProduct(product);
+			ProductValidator.validateEditProduct(product);
 			if (productDAO.updateProduct(product)) {
 				System.out.println( product.getProductName() + " Successfully Updated");
 				return true;

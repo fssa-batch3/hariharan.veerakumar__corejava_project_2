@@ -10,50 +10,56 @@ import com.fssa.crazyfitness.validations.exceptions.InvalidUserException;
 
 public class UserValidator {
 
-//	register user
+	/**
+	 * @param user
+	 * @return
+	 * @throws InvalidUserException
+	 */
 	public static boolean validateUser(User user) throws InvalidUserException {
 		if (user != null && validateName(user.getFname()) && validateName(user.getLname())
 				&& validateEmail(user.getEmail()) && validatePassword(user.getPassword())
 				&& validatePhone(user.getPhone()) && validateAge(user.getAge())) {
 			return true;
-		} else { 
+		} else {
 			throw new InvalidUserException("User details are not valid");
 		}
- 
-	} 
+
+	}
 
 //	login user 
 	public static boolean validateLogin(String email, String providedPassword) throws InvalidUserException {
 		UserDAO userDAO = new UserDAO();
 		try {
-		if (validateEmail(email) && validatePassword(providedPassword)) {
-			
+			if (validateEmail(email) && validatePassword(providedPassword)) {
+
 				User storedUser = userDAO.getUserByEmail(email);
 				if (storedUser != null) {
 					String storedPassword = storedUser.getPassword();
 					if (storedPassword.equals(providedPassword)) {
-	
+
 						return true;
 					} else {
-					
-						throw new InvalidUserException("Your password is wrong, please correct it");
+
+						throw new InvalidUserException("Wrong password, please correct it");
 					}
-				}	else {
+				} else {
 					throw new InvalidUserException("User not found");
 				}
 			}
-		} 
-		catch (DAOException e) {
+		} catch (DAOException e) {
 			throw new InvalidUserException("Login details are not valid");
 		}
 		throw new InvalidUserException("Login details are not valid");
-		}
+	}
 
 	// validation for name
 	public static boolean validateName(String name) throws InvalidUserException {
-	
-		if (name == null || name.isEmpty())
-			return false;
+
+		if (name == null)
+			throw new InvalidUserException("Name should not be null");
+
+		if (name.trim().isEmpty())
+			throw new InvalidUserException("Name should not be empty");
 
 		String regex = "^[A-Z a-z]{3,29}$";
 		Pattern p = Pattern.compile(regex);
@@ -62,63 +68,73 @@ public class UserValidator {
 		if (match) {
 			return true;
 		} else {
-			throw new InvalidUserException("Invalid name");
+			throw new InvalidUserException(
+					"Name must contain alphabetic letters also minimum 3 characters is required and should be in 30 characters");
 		}
-	
+
 	}
 
 	public static boolean validatePassword(String password) throws InvalidUserException {
 
-		if (password == null || password.isEmpty())
-			return false;
+		if (password == null)
+			throw new InvalidUserException("Password should not be null");
+		if (password.trim().isEmpty()) {
+			throw new InvalidUserException("Password should not be empty");
+		}
+
 		String pattern_string = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@#$%^&+=])(?=.*[^\\s]).{8,}$";
 		boolean match = Pattern.matches(pattern_string, password);
 		if (match) {
 			return true;
 		} else {
-			throw new InvalidUserException("Invalid Password");
+			throw new InvalidUserException(
+					"Password must conatain a special character and a numeric value and a upper case and lower case also minimum 8 characters is required");
 		}
 
 	}
 
 	public static boolean validateEmail(String email) throws InvalidUserException {
 
-		if (email == null || email.isEmpty())
-			return false;
+		if (email == null)
+			throw new InvalidUserException("Email should not be null");
+		if (email.trim().isEmpty()) {
+			throw new InvalidUserException("Email should not be empty");
+		}
 
 		String regex = "^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$";
 		boolean isMatch = Pattern.matches(regex, email);
 		if (isMatch) {
 			return true;
 		} else {
-			throw new InvalidUserException("Invalid Email");
+			throw new InvalidUserException(
+					"Email must contain @ and . and all the alphabetic value should be in lowercase");
 		}
 
 	}
 
 	public static boolean validatePhone(String phone) throws InvalidUserException {
 
-		if (phone == null || phone.isEmpty())
-			return false;
-
+		if (phone == null)
+			throw new InvalidUserException("Phone number contains only 10 numberic values[0-9], should not be null");
+		if (phone.trim().isEmpty()) {
+			throw new InvalidUserException("Phone number contains only 10 numberic values[0-9], should not be empty");
+		}
 		String regex = "^[6789]\\d{9}$";
 		boolean isMatch = Pattern.matches(regex, phone);
 		if (isMatch) {
 			return true;
 
 		} else {
-			throw new InvalidUserException("Invalid phone number");
+			throw new InvalidUserException("Phone number contains only 10 numberic values[0-9]");
 		}
 
 	}
 
 	public static boolean validateAge(int age) throws InvalidUserException {
-		if (age == 0)
-			return false;
 		if (age >= 10 && age < 100) {
 			return true;
 		} else {
-			throw new InvalidUserException("Invalid Age");
+			throw new InvalidUserException("Age must between 9 to 99");
 		}
 
 	}

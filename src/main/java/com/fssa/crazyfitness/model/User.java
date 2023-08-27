@@ -4,6 +4,7 @@ package com.fssa.crazyfitness.model;
 
 public class User {
 	
+	private int userId;
 	private String fname;
 	private String lname;
 	public int age;
@@ -33,6 +34,20 @@ public class User {
 		this.password = password;
 	}
 
+	
+	public User(int userId, String fname, String lname, int age, String email, String password, String phone,
+			String address) {
+		super();
+		this.userId = userId;
+		this.fname = fname;
+		this.lname = lname;
+		this.age = age;
+		this.email = email;
+		this.password = password;
+		this.phone = phone;
+		this.address = address;
+	}
+
 	public User(String fname, String lname, int age, String email, String password, String phone, String address) {
 		super();
 		this.fname = fname;
@@ -43,7 +58,17 @@ public class User {
 		this.phone = phone;
 		this.address = address;
 	}
-		
+	
+	
+	
+	public int getUserId() {
+		return userId;
+	}
+
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
+
 	public String getFname() {
 		return fname;
 	}

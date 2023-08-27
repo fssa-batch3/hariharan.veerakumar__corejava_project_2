@@ -33,7 +33,7 @@ public class SongDAO {
 			insertPst.setString(4, song.getSongUrl());
 			int rows = insertPst.executeUpdate();
 			return (rows == 1);
-		} catch (SQLException | DatabaseException e) {
+		} catch (SQLException  e) {
 			throw new DAOException(e);
 		}
 	}
