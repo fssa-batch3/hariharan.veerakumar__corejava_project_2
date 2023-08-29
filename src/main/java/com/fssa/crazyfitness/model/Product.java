@@ -38,6 +38,13 @@ public class Product {
 		this.productId = productId;
 	}
 	
+	/**
+	 * @param productImage
+	 * @param productName
+	 * @param productPrice
+	 * @param productDescrption
+	 * constructor which is used for add product (Create) because id is auto increment in database
+	 */
 	public Product(String productImage, String productName, int productPrice, String productDescrption ) {
 		super();
 	
@@ -48,6 +55,14 @@ public class Product {
 		
 	}
 	
+	/**
+	 * @param productId
+	 * @param productImage
+	 * @param productName
+	 * @param productPrice
+	 * @param productDescrption
+	 * constructor which is used for edit product because getting product by id(Update)
+	 */
 	public Product(int productId,String productImage, String productName, int productPrice, String productDescrption ) {
 		super();
 		this.productId = productId;

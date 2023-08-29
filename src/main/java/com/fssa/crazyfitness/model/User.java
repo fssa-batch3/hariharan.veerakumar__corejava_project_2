@@ -35,6 +35,17 @@ public class User {
 	}
 
 	
+	/**
+	 * @param userId
+	 * @param fname
+	 * @param lname
+	 * @param age
+	 * @param email
+	 * @param password
+	 * @param phone
+	 * @param address
+	 * Construtor which is used for edit user (Update) 
+	 */
 	public User(int userId, String fname, String lname, int age, String email, String password, String phone,
 			String address) {
 		super();
@@ -48,6 +59,39 @@ public class User {
 		this.address = address;
 	}
 
+	
+	/**
+	 * @param userId
+	 * @param fname
+	 * @param lname
+	 * @param age
+	 * @param email
+	 * @param phone
+	 * @param address
+	 * constructor which is used for list users(Read) without password 
+	 */
+	public User(int userId, String fname, String lname, int age, String email, String phone,
+			String address) {
+		super();
+		this.userId = userId;
+		this.fname = fname;
+		this.lname = lname;
+		this.age = age;
+		this.email = email;
+		this.phone = phone;
+		this.address = address;
+	}
+
+	/**
+	 * @param fname
+	 * @param lname
+	 * @param age
+	 * @param email
+	 * @param password
+	 * @param phone
+	 * @param address
+	 * constructor which is used for register user (Create) without id because id is auto increment in database
+	 */
 	public User(String fname, String lname, int age, String email, String password, String phone, String address) {
 		super();
 		this.fname = fname;

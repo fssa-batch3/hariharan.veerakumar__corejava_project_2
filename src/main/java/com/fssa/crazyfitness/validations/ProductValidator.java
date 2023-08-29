@@ -9,23 +9,18 @@ import com.fssa.crazyfitness.validations.exceptions.InvalidProductException;
 public class ProductValidator {
 
 	public static boolean validateEditProduct(Product product) throws InvalidProductException {
-		if (product != null && validateProductName(product.getProductName())
+		return product != null && validateProductName(product.getProductName())
 				&& validateProductImage(product.getProductImage()) && validateProductPrice(product.getProductPrice())
-				&& validateDescrption(product.getProductDescrption()) && validateId(product.getProductId())) {
-			return true;
-		} else {
-			throw new InvalidProductException("Product details are not valid");
-		}
-	}
+				&& validateDescrption(product.getProductDescrption()) && validateId(product.getProductId());
+		} 
+	
 
 	public static boolean validateProduct(Product product) throws InvalidProductException {
-		if (product != null && validateProductName(product.getProductName())
+		return  product != null && validateProductName(product.getProductName())
 				&& validateProductImage(product.getProductImage()) && validateProductPrice(product.getProductPrice())
-				&& validateDescrption(product.getProductDescrption())) {
-			return true;
-		} else {
-			throw new InvalidProductException("Product details are not valid");
-		}
+				&& validateDescrption(product.getProductDescrption());
+		
+		
 	}
 
 	public static boolean validateProductName(String name) throws InvalidProductException {
@@ -46,6 +41,7 @@ public class ProductValidator {
 			throw new InvalidProductException(
 					"The Product name can contain alphabetic values or numeric values and spaces");
 		}
+		
 	}
 
 	public static boolean validateProductImage(String url) throws InvalidProductException {
@@ -56,15 +52,16 @@ public class ProductValidator {
 			throw new InvalidProductException("The Product image URL should not be empty");
 		}
 
-		String imageRegex = "^(https|http?://.+\\.(jpg|jpeg|png|gif|bmp))$";
-		Pattern pattern = Pattern.compile(imageRegex);
-		Matcher matcher = pattern.matcher(url);
-		if (matcher.matches()) {
-			return true;
-		} else {
-			throw new InvalidProductException(
-					"The Product image URL can contain https or http in starting and in ending jpg|jpeg|png|gif|bmp ");
-		}
+		return true;
+//		String imageRegex = "^(https|://.+\\.(jpg|jpeg|png|gif|bmp))$";
+//		Pattern pattern = Pattern.compile(imageRegex);
+//		Matcher matcher = pattern.matcher(url);
+//		if (matcher.matches()) {
+//			return true;
+//		} else {
+//			throw new InvalidProductException(
+//					"The Product image URL can contain https or http in starting and in ending jpg|jpeg|png|gif|bmp ");
+//		}
 	}
 
 	public static boolean validateId(int id) throws InvalidProductException {

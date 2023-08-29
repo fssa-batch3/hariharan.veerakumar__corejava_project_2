@@ -7,13 +7,20 @@ import java.sql.SQLException;
 public class ConnectionDb {
 	public static Connection getConnection()  {
 		Connection connect = null;
+	
 		String DB_URL;
 		String DB_USER;
 		String DB_PASSWORD;
 
+		// Cloud DB
 		DB_URL = System.getenv("DB_URL");
 		DB_USER = System.getenv("DB_USER");
 		DB_PASSWORD = System.getenv("DB_PASSWORD");
+		
+		// LocalHost
+//		DB_URL = "jdbc:mysql://localhost:3306/crazyfitness";
+//		DB_USER	= "root";
+//		DB_PASSWORD = "123456";
 		
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");

@@ -1,14 +1,16 @@
 package com.fssa.crazyfitness.dao;
 
 import java.sql.Connection;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
+import com.fssa.crazyfitness.dao.exceptions.DAOException;
 import com.fssa.crazyfitness.model.User;
 import com.fssa.crazyfitness.util.ConnectionDb;
-import com.fssa.crazyfitness.dao.exceptions.DAOException;
 
 public class UserDAO {
 
@@ -101,6 +103,29 @@ public class UserDAO {
 		return null;
 	}
 
+	public static List<User> getAllUsers() throws DAOException{
+		final String selectAllUserQuery = "SELECT * FROM user";
+		List<User> userList = new ArrayList<>();
+		try (Connection connect = ConnectionDb.getConnection();
+				Statement statement = connect.createStatement();
+				ResultSet rs = statement.executeQuery(selectAllUserQuery)) {
+			while(rs.next()) {
+				int userId = rs.getInt("user_id");
+				String userFname = rs.getString("first_name");
+				String userLname = rs.getString("last_name");
+				int userAge = rs.getInt("age");
+				String userEmail = rs.getString("email");
+				String userPhone = rs.getString("phone");
+				String userAddress = rs.getString("address");
+				User user= new User(userId,userFname, userLname,userAge,userEmail,userPhone,userAddress);
+				userList.add(user);
+			}
+			
+		} catch (SQLException e) {
+			throw new DAOException(e);
+		}
+		return userList;
+	}
 	// update user
 	/**
 	 * @param user
