@@ -20,7 +20,7 @@ public class UserValidator {
 		if (user == null) {
 			throw new InvalidUserException("User details should not be NULL");
 		}
-
+		
 		return validateName(user.getFname()) && validateName(user.getLname()) && validateEmail(user.getEmail())
 				&& validatePassword(user.getPassword()) && validatePhone(user.getPhone()) && validateAge(user.getAge());
 
@@ -30,21 +30,20 @@ public class UserValidator {
 	public static boolean validateLogin(String email, String providedPassword) throws InvalidUserException {
 		UserDAO userDAO = new UserDAO();
 		try {
-			if (validateEmail(email)) {
-				if (validatePassword(providedPassword)) {
-					User storedUser = userDAO.getUserByEmail(email);
-					if (storedUser != null) {
-						String storedPassword = storedUser.getPassword();
-						if (storedPassword.equals(providedPassword)) {
+			if (validateEmail(email) && validatePassword(providedPassword)) {
 
-							return true;
-						} else {
+				User storedUser = userDAO.getUserByEmail(email);
+				if (storedUser != null) {
+					String storedPassword = storedUser.getPassword();
+					if (storedPassword.equals(providedPassword)) {
 
-							throw new InvalidUserException("Wrong password, please correct it");
-						}
+						return true;
 					} else {
-						throw new InvalidUserException("User not found");
+
+						throw new InvalidUserException("Wrong password, please correct it");
 					}
+				} else {
+					throw new InvalidUserException("User not found");
 				}
 			}
 		} catch (DAOException e) {
