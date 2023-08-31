@@ -13,7 +13,7 @@ public DatabaseException(String msg) {
  public DatabaseException(Throwable ex) {
 	   super(ex);
    }
-	
+	 
  public DatabaseException(String msg, Throwable ex) {
 	   super(msg,ex);
  }

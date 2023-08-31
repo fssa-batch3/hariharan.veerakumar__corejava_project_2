@@ -12,13 +12,8 @@ public class SongService {
 		SongDAO songDAO = new SongDAO();
 		try {
 			SongValidator.validateSong(song); 
-			if (songDAO.createSong(song)) {
-				System.out.println( song.getSongName() + " added Successfully");
-				return true;
-			} else {
-				System.out.println( song.getSongName() + " adding not Successful");
-				return false;
-			}
+			return songDAO.createSong(song);
+		
 		} catch (DAOException | InvalidSongException e) {
 			throw new ServiceException(e);
 		}

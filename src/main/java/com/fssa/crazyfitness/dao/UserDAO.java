@@ -11,6 +11,7 @@ import java.util.List;
 import com.fssa.crazyfitness.dao.exceptions.DAOException;
 import com.fssa.crazyfitness.model.User;
 import com.fssa.crazyfitness.util.ConnectionDb;
+import com.fssa.crazyfitness.util.DatabaseException;
 
 public class UserDAO {
 
@@ -19,7 +20,7 @@ public class UserDAO {
 	 * @return
 	 * @throws SQLException
 	 */
-	public boolean emailCheck(String email) throws SQLException {
+	public boolean emailCheck(String email) throws DAOException, SQLException {
 		final String selectQuery = "SELECT email FROM user WHERE email = ?";
 		ResultSet rs = null;
 		try (Connection connect = ConnectionDb.getConnection();
@@ -31,6 +32,8 @@ public class UserDAO {
 
 			return rs.next();
 
+		} catch (DatabaseException e) {
+			throw new DAOException(e);
 		} finally {
 			if (rs != null) {
 				rs.close();
@@ -66,7 +69,7 @@ public class UserDAO {
 				throw new DAOException("Your email is already registered please try another");
 			}
 
-		} catch (SQLException e) {
+		} catch (SQLException | DatabaseException e) {
 			throw new DAOException(e);
 		}
 	}
@@ -97,7 +100,7 @@ public class UserDAO {
 
 				return user;
 			}
-		} catch (SQLException e) {
+		} catch (SQLException | DatabaseException e) {
 			throw new DAOException(e);
 		}
 
@@ -122,7 +125,7 @@ public class UserDAO {
 				userList.add(user);
 			}
 
-		} catch (SQLException e) {
+		} catch (SQLException |DatabaseException e) {
 			throw new DAOException(e);
 		}
 		return userList;
@@ -149,7 +152,7 @@ public class UserDAO {
 			int rows = pst.executeUpdate();
 			return (rows == 1);
 
-		} catch (SQLException e) {
+		} catch (SQLException | DatabaseException e) {
 			throw new DAOException(e);
 		}
 

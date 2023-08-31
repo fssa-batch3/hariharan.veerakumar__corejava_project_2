@@ -16,7 +16,7 @@ class TestAddSong {
 		SongService songService = new SongService();
 		Song song = new Song(1,"ETHIR NEECHAL","../assets/images/MUSIC/ethir_neechal.jpg", "../assets/audio/Ethir-Neechal.mp3");
 		try {
-			assertTrue(songService.SongCreate(song));
+			assertTrue(songService.songCreate(song));
 		} catch (ServiceException e) {
 			e.printStackTrace();
 			fail();
@@ -27,7 +27,7 @@ class TestAddSong {
 		SongService songService = new SongService();
 		Song song = null;
 		try {
-			assertFalse(songService.SongCreate(song));
+			assertFalse(songService.songCreate(song));
 		} catch (ServiceException e) {
 			e.printStackTrace();
 		}

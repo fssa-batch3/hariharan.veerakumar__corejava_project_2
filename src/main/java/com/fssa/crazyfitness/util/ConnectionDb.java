@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class ConnectionDb {
-	public static Connection getConnection() {
+	public static Connection getConnection() throws DatabaseException {
 		Connection connect = null;
 
 		String url;
@@ -25,9 +25,9 @@ public class ConnectionDb {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			connect = DriverManager.getConnection(url, user, password);
 		} catch (SQLException e) {
-			throw new RuntimeException("Unable to connect to database", e);
+			throw new DatabaseException("Unable to connect to database", e);
 		} catch (ClassNotFoundException e) {
-			throw new RuntimeException("Database driver class not found", e);
+			throw new DatabaseException("Database driver class not found", e);
 		}
 
 		return connect;
