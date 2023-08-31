@@ -16,15 +16,6 @@ public class ConnectionDb {
 		user = System.getenv("DB_USER");
 		password = System.getenv("DB_PASSWORD");
 
-		/*
-		 *  LocalHost
-		 * 
-		 * url = "jdbc:mysql://localhost:3306/crazyfitness";
-		 *  user = "root"; 
-		 *  password = "123456";
-		 * 
-		 */
-
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			connect = DriverManager.getConnection(url, user, password);
