@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import com.fssa.crazyfitness.dao.exceptions.DAOException;
 import com.fssa.crazyfitness.model.Product;
 import com.fssa.crazyfitness.util.ConnectionDb;
+import com.fssa.crazyfitness.util.DatabaseException;
 
 public class ProductDAO {
 
@@ -17,8 +18,9 @@ public class ProductDAO {
 	 * @param productName
 	 * @return
 	 * @throws SQLException
+	 * @throws DAOException 
 	 */
-	public boolean productNameCheck(String productName) throws SQLException {
+	public boolean productNameCheck(String productName) throws SQLException, DAOException {
 		final String selectQuery = "SELECT product_name FROM product WHERE product_name = ?";
 		ResultSet rs = null;
 		try (Connection connect = ConnectionDb.getConnection();
@@ -28,6 +30,8 @@ public class ProductDAO {
 
 			// Product name already exists, do not allow in database
 			return rs.next();
+		} catch (DatabaseException e) {
+			throw new DAOException(e);
 		} finally {
 			if (rs != null) {
 				rs.close();
@@ -57,7 +61,7 @@ public class ProductDAO {
 			} else {
 				throw new DAOException("This product already added");
 			}
-		} catch (SQLException e) {
+		} catch (SQLException |DatabaseException e) {
 			throw new DAOException(e);
 		}
 	}
@@ -84,7 +88,7 @@ public class ProductDAO {
 				Product product = new Product(productId, productImage, name, price, description);
 				productList.add(product);
 			}
-		} catch (SQLException e) {
+		} catch (SQLException | DatabaseException e) {
 			throw new DAOException(e);
 		}
 		return productList;
@@ -107,7 +111,7 @@ public class ProductDAO {
 			updatePst.setInt(5, product.getProductId());
 			int rows = updatePst.executeUpdate();
 			return (rows == 1);
-		} catch (SQLException e) {
+		} catch (SQLException | DatabaseException e) {
 			throw new DAOException(e);
 		}
 
@@ -126,7 +130,7 @@ public class ProductDAO {
 			deletePst.setInt(1, id);
 			int rows = deletePst.executeUpdate();
 			return (rows == 1);
-		} catch (SQLException e) {
+		} catch (SQLException |DatabaseException e) {
 			throw new DAOException(e);
 		}
 	}

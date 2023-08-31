@@ -1,11 +1,11 @@
 package com.fssa.crazyfitness.dao;
 
 import java.sql.Connection;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import com.fssa.crazyfitness.util.DatabaseException;
 import com.fssa.crazyfitness.dao.exceptions.DAOException;
 import com.fssa.crazyfitness.model.Song;
 import com.fssa.crazyfitness.util.ConnectionDb;
@@ -33,7 +33,7 @@ public class SongDAO {
 			insertPst.setString(4, song.getSongUrl());
 			int rows = insertPst.executeUpdate();
 			return (rows == 1);
-		} catch (SQLException  e) {
+		} catch (SQLException | DatabaseException  e) {
 			throw new DAOException(e);
 		}
 	}
