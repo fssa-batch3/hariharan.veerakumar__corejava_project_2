@@ -35,29 +35,7 @@ public class User {
 	}
 
 	
-	/**
-	 * @param userId
-	 * @param fname
-	 * @param lname
-	 * @param age
-	 * @param email
-	 * @param password
-	 * @param phone
-	 * @param address
-	 * Construtor which is used for edit user (Update) 
-	 */
-	public User(int userId, String fname, String lname, int age, String email, String password, String phone,
-			String address) {
-		super();
-		this.userId = userId;
-		this.fname = fname;
-		this.lname = lname;
-		this.age = age;
-		this.email = email;
-		this.password = password;
-		this.phone = phone;
-		this.address = address;
-	}
+
 
 	
 	/**
@@ -72,7 +50,7 @@ public class User {
 	 */
 	public User(int userId, String fname, String lname, int age, String email, String phone,
 			String address) {
-		super();
+
 		this.userId = userId;
 		this.fname = fname;
 		this.lname = lname;
