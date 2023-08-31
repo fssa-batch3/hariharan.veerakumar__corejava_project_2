@@ -33,7 +33,9 @@ public class UserDAO {
 			return true;
 
 		} finally {
-			rs.close();
+			if (rs != null) {
+				rs.close();
+			}
 		}
 	}
 
