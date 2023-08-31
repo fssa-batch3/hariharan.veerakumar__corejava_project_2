@@ -8,23 +8,41 @@ import com.fssa.crazyfitness.validations.exceptions.InvalidProductException;
 
 public class ProductValidator {
 
+	/**
+	 * 
+	 * @param product
+	 * @return
+	 * @throws InvalidProductException
+	 */
 	public static boolean validateEditProduct(Product product) throws InvalidProductException {
-		return product != null && validateProductName(product.getProductName())
-				&& validateProductImage(product.getProductImage()) && validateProductPrice(product.getProductPrice())
-				&& validateDescrption(product.getProductDescrption()) && validateId(product.getProductId());
-		} 
-	
+		if (product == null) {
+			throw new InvalidProductException("Product should not be null");
+		}
 
-	public static boolean validateProduct(Product product) throws InvalidProductException {
-		return  product != null && validateProductName(product.getProductName())
-				&& validateProductImage(product.getProductImage()) && validateProductPrice(product.getProductPrice())
-				&& validateDescrption(product.getProductDescrption());
-		
-		
+		return validateProductName(product.getProductName()) && validateProductImage(product.getProductImage())
+				&& validateProductPrice(product.getProductPrice()) && validateDescrption(product.getProductDescrption())
+				&& validateId(product.getProductId());
 	}
 
-	public static boolean validateProductName(String name) throws InvalidProductException {
+	/**
+	 * 
+	 * @param product
+	 * @return
+	 * @throws InvalidProductException
+	 */
+	public static boolean validateProduct(Product product) throws InvalidProductException {
+		if (product == null) {
+			throw new InvalidProductException("Product should not be null");
+		}
+		return validateProductName(product.getProductName()) && validateProductImage(product.getProductImage())
+				&& validateProductPrice(product.getProductPrice()) 
+				&& validateDescrption(product.getProductDescrption());
 
+	}
+
+
+
+	public static boolean validateProductName(String name) throws InvalidProductException {
 		if (name == null)
 			throw new InvalidProductException("The Product name should not be null");
 		if (name.trim().isEmpty()) {
@@ -41,7 +59,7 @@ public class ProductValidator {
 			throw new InvalidProductException(
 					"The Product name can contain alphabetic values or numeric values and spaces");
 		}
-		
+
 	}
 
 	public static boolean validateProductImage(String url) throws InvalidProductException {

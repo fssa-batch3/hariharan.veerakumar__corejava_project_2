@@ -34,7 +34,7 @@ public class ProductService {
 			throw new ServiceException(e);
 		} 
 	}
-	 
+	  
 //list product
     public List<Product> getAllProductsList() throws ServiceException {
         try {

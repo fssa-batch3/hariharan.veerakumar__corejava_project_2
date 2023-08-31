@@ -1,39 +1,48 @@
 package com.fssa.crazyfitness.services.testproductservice;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import org.junit.jupiter.api.Test;
 
 import com.fssa.crazyfitness.services.exceptions.ServiceException;
+import com.fssa.crazyfitness.validations.ProductValidator;
+import com.fssa.crazyfitness.validations.exceptions.InvalidProductException;
+import com.fssa.crazyfitness.services.ProductService;
+import com.fssa.crazyfitness.model.Product;
 
-import  com.fssa.crazyfitness.services.ProductService; 
-import  com.fssa.crazyfitness.model.Product; 
-
- class TestAddProduct {
+class TestAddProduct {
 	@Test
-	 void testCreateProduct() {
+	void testCreateProduct() {
 		ProductService productService = new ProductService();
-		Product product = new Product("./../assets/images/DumbBells.jpg","Dumb Bells",999,"Made up of rubber and Iron");
+		String url = "https://www.bftfitness.com/uploads/allimg/220616/1-220616095201I6.jpg";
+		Product product = new Product(url, "Lat Pulldown", 39999,
+				"The lat pull down machine is designed for the purpose of compound exercise, specifically exercise meant to both develop and then stress the lat muscle");
 		try {
 			assertTrue(productService.productCreate(product));
-		}catch(ServiceException e){
+		} catch (ServiceException e) {
 			e.printStackTrace();
 			fail();
 		}
 	}
-	@Test  
-	 void testNullProduct() { 
+
+	@Test
+	void testNullProduct() {
+
 		ProductService productService = new ProductService();
 		Product product = null;
 		try {
-			assertFalse(productService.productCreate(product));
+			productService.productCreate(product);
+			Throwable exception = assertThrows(InvalidProductException.class, () -> {
+			});
+			assertEquals("Product should not be null", exception.getMessage());
 		} catch (ServiceException e) {
 			e.printStackTrace();
 		}
+
 	}
 
-
 }
-	

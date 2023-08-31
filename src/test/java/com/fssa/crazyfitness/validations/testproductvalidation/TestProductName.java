@@ -16,7 +16,7 @@ import com.fssa.crazyfitness.validations.exceptions.InvalidProductException;
 			fail();
 		}
 	}
-	
+	 
 	@Test
 	 void testInvalidProductName() {
 		try {

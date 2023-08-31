@@ -36,7 +36,7 @@ public class ProductDAO {
 			}
 
 		}
-	}
+	} 
 
 // create product
 	/**

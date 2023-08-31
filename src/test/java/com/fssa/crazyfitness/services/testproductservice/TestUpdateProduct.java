@@ -23,7 +23,7 @@ import  com.fssa.crazyfitness.services.exceptions.ServiceException;
 		fail();
 	}
 }
-  
+   
 @Test
  void testInvalidUpdate() {
 	ProductService productService = new ProductService();
