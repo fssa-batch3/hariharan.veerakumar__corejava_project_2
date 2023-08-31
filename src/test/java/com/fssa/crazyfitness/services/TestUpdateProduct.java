@@ -13,20 +13,33 @@ import  com.fssa.crazyfitness.services.exceptions.ServiceException;
 @Test
  void testValidUpdate() {
 	ProductService productService = new ProductService();
-	String url = "https://media.istockphoto.com/id/531520849/photo/barbell.jpg?b=1&s=612x612&w=0&k=20&c=23n5ib9GETy8PwO6UcbjSaY_RqGXjVcxeO7epZ7pmmY=";	
-	Product product = new Product(7,url,"Bar Bells",20000,"Consists of couple bars with specific kilograms");
+	String url = "https://media.istockphoto.com/id/531520849/photo/barbell.jpg?b=1&s=612x612&w=0&k=20&c=23n5ib9GETy8PwO6UcbjSaY_RqGXjVcxeO7epZ7pmmY=";
+
+	Product product = new Product();
+	product.setProductId(7);
+	product.setProductImage(url);
+	product.setProductName("Bar Bells");
+	product.setProductPrice(21000);
+	product.setProductDescrption("Consists of couple bars with specific kilograms");
+
 	try {
-		assertTrue(productService.productUpdate(product));
-	}catch(ServiceException e){
-		e.printStackTrace();
-		fail();
+	    assertTrue(productService.productUpdate(product));
+	} catch (ServiceException e) {
+	    e.printStackTrace();
+	    fail();
 	}
+
 }
    
 @Test
  void testInvalidUpdate() {
 	ProductService productService = new ProductService();
-	Product product = new Product(10,"./../assets/images/dumbbells.jpg","Dumb Bells",1000,"Made up of rubber and iron");
+	Product product = new Product();
+	product.setProductId(10110);
+	product.setProductImage("./../assets/images/dumbbells.jpg");
+	product.setProductName("Dumb Bells");
+	product.setProductPrice(1000);
+	product.setProductDescrption("Made up of rubber and iron");
 	try {
 		assertFalse(productService.productUpdate(product));
 	}catch(ServiceException e){
@@ -37,7 +50,13 @@ import  com.fssa.crazyfitness.services.exceptions.ServiceException;
 @Test
  void testNegativePriceUpdate() {
 	ProductService productService = new ProductService();
-	Product product = new Product(1,"./../assets/images/dumbbells.jpg","Dumb Bells",-1000,"Made up of rubber and iron");
+	
+	Product product = new Product();
+	product.setProductId(1);
+	product.setProductImage("./../assets/images/dumbbells.jpg");
+	product.setProductName("Dumb Bells");
+	product.setProductPrice(-1000);
+	product.setProductDescrption("Made up of rubber and iron");
 	try {
 		assertFalse(productService.productUpdate(product));
 	}catch(ServiceException e){
