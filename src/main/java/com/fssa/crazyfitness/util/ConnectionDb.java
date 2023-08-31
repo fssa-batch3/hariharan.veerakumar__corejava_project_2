@@ -5,26 +5,25 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class ConnectionDb {
-	public static Connection getConnection()  {
+	public static Connection getConnection() {
 		Connection connect = null;
-	
-		String DB_URL;
-		String DB_USER;
-		String DB_PASSWORD;
 
+		String url;
+		String user;
+        String password;
 		// Cloud DB
-		DB_URL = System.getenv("DB_URL");
-		DB_USER = System.getenv("DB_USER");
-		DB_PASSWORD = System.getenv("DB_PASSWORD");
-		
+		url = System.getenv("DB_URL");
+		user = System.getenv("DB_USER");
+		password = System.getenv("DB_PASSWORD");
+
 		// LocalHost
-//		DB_URL = "jdbc:mysql://localhost:3306/crazyfitness";
-//		DB_USER	= "root";
-//		DB_PASSWORD = "123456";
-		
+//		url = "jdbc:mysql://localhost:3306/crazyfitness";
+//		user	= "root";
+//		password = "123456";
+
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			connect = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
+			connect = DriverManager.getConnection(url, user, password);
 		} catch (SQLException e) {
 			throw new RuntimeException("Unable to connect to database", e);
 		} catch (ClassNotFoundException e) {

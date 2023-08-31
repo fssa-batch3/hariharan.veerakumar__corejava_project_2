@@ -8,7 +8,7 @@ import com.fssa.crazyfitness.validations.SongValidator;
 import com.fssa.crazyfitness.validations.exceptions.InvalidSongException;
 
 public class SongService {
-	public boolean SongCreate(Song song) throws ServiceException {
+	public boolean songCreate(Song song) throws ServiceException {
 		SongDAO songDAO = new SongDAO();
 		try {
 			SongValidator.validateSong(song); 
@@ -22,5 +22,5 @@ public class SongService {
 		} catch (DAOException | InvalidSongException e) {
 			throw new ServiceException(e);
 		}
-	}
+	} 
 }

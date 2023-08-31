@@ -1,6 +1,6 @@
 package com.fssa.crazyfitness.dao;
 
-	import java.sql.Connection;
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -15,7 +15,7 @@ import com.fssa.crazyfitness.util.ConnectionDb;
 public class UserDAO {
 
 	/**
-	 * @param email 
+	 * @param email
 	 * @return
 	 * @throws SQLException
 	 */
@@ -26,11 +26,10 @@ public class UserDAO {
 				PreparedStatement selectPst = connect.prepareStatement(selectQuery)) {
 			selectPst.setString(1, email);
 			rs = selectPst.executeQuery();
-			if(rs.next()) {
-				// Email already exists, do not proceed with registration
-				return false;
-			}
-			return true;
+
+			// Email already exists, do not proceed with registration
+
+			return rs.next();
 
 		} finally {
 			if (rs != null) {
@@ -105,13 +104,13 @@ public class UserDAO {
 		return null;
 	}
 
-	public static List<User> getAllUsers() throws DAOException{
+	public static List<User> getAllUsers() throws DAOException {
 		final String selectAllUserQuery = "SELECT * FROM user";
-		List<User> userList = new ArrayList<>(); 
+		List<User> userList = new ArrayList<>();
 		try (Connection connect = ConnectionDb.getConnection();
 				Statement statement = connect.createStatement();
 				ResultSet rs = statement.executeQuery(selectAllUserQuery)) {
-			while(rs.next()) {
+			while (rs.next()) {
 				int userId = rs.getInt("user_id");
 				String userFname = rs.getString("first_name");
 				String userLname = rs.getString("last_name");
@@ -119,15 +118,16 @@ public class UserDAO {
 				String userEmail = rs.getString("email");
 				String userPhone = rs.getString("phone");
 				String userAddress = rs.getString("address");
-				User user= new User(userId,userFname, userLname,userAge,userEmail,userPhone,userAddress);
+				User user = new User(userId, userFname, userLname, userAge, userEmail, userPhone, userAddress);
 				userList.add(user);
 			}
-			
+
 		} catch (SQLException e) {
 			throw new DAOException(e);
 		}
 		return userList;
 	}
+
 	// update user
 	/**
 	 * @param user

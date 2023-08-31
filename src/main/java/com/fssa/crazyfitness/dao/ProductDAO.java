@@ -25,18 +25,16 @@ public class ProductDAO {
 				PreparedStatement selectPst = connect.prepareStatement(selectQuery);) {
 			selectPst.setString(1, productName);
 			rs = selectPst.executeQuery();
-			if(rs.next()) {
-				// Product name already exists, do not allow in database
-				return false;
-			}
-			return true;
+
+			// Product name already exists, do not allow in database
+			return rs.next();
 		} finally {
 			if (rs != null) {
 				rs.close();
 			}
 
 		}
-	} 
+	}
 
 // create product
 	/**

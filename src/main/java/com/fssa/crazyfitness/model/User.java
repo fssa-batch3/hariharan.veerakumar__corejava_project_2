@@ -7,10 +7,10 @@ public class User {
 	private int userId;
 	private String fname;
 	private String lname;
-	public int age;
-	public String email;
-	public String password;
-	private String phone;
+	private int age;
+	private String email;
+	private String password;
+	private String phone; 
 	private String address;
 	 
 	

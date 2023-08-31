@@ -1,15 +1,15 @@
 package com.fssa.crazyfitness.model;
 
 public class Song {
-  public int songId;
-  public String songName;
-  public String songImage;
-  public String songUrl;
+  private int songId;
+  private String songName;
+  private String songImage;
+  private String songUrl;
   
 public Song(int songId, String songName, String songImage, String songUrl) {
 	super();
 	this.songId = songId;
-	this.songName = songName;
+	this.songName = songName; 
 	this.songImage = songImage;
 	this.songUrl = songUrl;
 }
