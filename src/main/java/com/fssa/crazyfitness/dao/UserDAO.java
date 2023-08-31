@@ -105,7 +105,7 @@ public class UserDAO {
 
 	public static List<User> getAllUsers() throws DAOException{
 		final String selectAllUserQuery = "SELECT * FROM user";
-		List<User> userList = new ArrayList<>();
+		List<User> userList = new ArrayList<>(); 
 		try (Connection connect = ConnectionDb.getConnection();
 				Statement statement = connect.createStatement();
 				ResultSet rs = statement.executeQuery(selectAllUserQuery)) {

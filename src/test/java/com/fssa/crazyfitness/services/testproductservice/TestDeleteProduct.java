@@ -14,7 +14,7 @@ import  com.fssa.crazyfitness.services.exceptions.ServiceException;
 	 void testValidDelete() {
 		ProductService productService = new ProductService();
 		try {
-			assertTrue(productService.productDelete(2));
+			assertTrue(productService.productDelete(11));
 		} catch (ServiceException e) {
 			e.printStackTrace();
 			fail();
