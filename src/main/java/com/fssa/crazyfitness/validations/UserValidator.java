@@ -15,16 +15,14 @@ public class UserValidator {
 	 * @return
 	 * @throws InvalidUserException
 	 */
-	@SuppressWarnings("null")
+
 	public static boolean validateUser(User user) throws InvalidUserException {
-		if (user != null) {
+		if (user == null) {
 			throw new InvalidUserException("User details should not be NULL");
-		}else {
-		 return validateName(user.getFname()) && validateName(user.getLname())
-				&& validateEmail(user.getEmail()) && validatePassword(user.getPassword())
-				&& validatePhone(user.getPhone()) && validateAge(user.getAge()); 
- 
-	}
+		}
+		return validateName(user.getFname()) && validateName(user.getLname()) && validateEmail(user.getEmail())
+				&& validatePassword(user.getPassword()) && validatePhone(user.getPhone()) && validateAge(user.getAge());
+
 	}
 
 //	login user 

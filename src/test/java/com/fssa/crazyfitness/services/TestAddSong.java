@@ -1,11 +1,10 @@
-package com.fssa.crazyfitness.services.testsongservice;
+package com.fssa.crazyfitness.services;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import org.junit.jupiter.api.Test;
-import  com.fssa.crazyfitness.services.SongService;
 import  com.fssa.crazyfitness.services.exceptions.ServiceException;
 import  com.fssa.crazyfitness.model.Song;
 

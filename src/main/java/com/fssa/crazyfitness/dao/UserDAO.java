@@ -1,6 +1,6 @@
 package com.fssa.crazyfitness.dao;
 
-import java.sql.Connection;
+	import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -15,7 +15,7 @@ import com.fssa.crazyfitness.util.ConnectionDb;
 public class UserDAO {
 
 	/**
-	 * @param email
+	 * @param email 
 	 * @return
 	 * @throws SQLException
 	 */

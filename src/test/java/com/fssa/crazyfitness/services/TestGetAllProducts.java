@@ -1,4 +1,4 @@
-package com.fssa.crazyfitness.services.testproductservice;
+package com.fssa.crazyfitness.services;
 
 import static org.junit.jupiter.api.Assertions.fail;
 
@@ -6,7 +6,6 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 import  com.fssa.crazyfitness.model.Product;
-import  com.fssa.crazyfitness.services.ProductService;
 import  com.fssa.crazyfitness.services.exceptions.ServiceException;
 
 class TestGetAllProducts {

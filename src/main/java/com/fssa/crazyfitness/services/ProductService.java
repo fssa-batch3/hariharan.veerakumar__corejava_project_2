@@ -12,12 +12,12 @@ import com.fssa.crazyfitness.validations.exceptions.InvalidProductException;
 
 public class ProductService {
 // create product 
-	/*
-	 * 
-	 * 
-	 * 
-	 * 
-	 * */
+/**
+ * 
+ * @param product
+ * @return
+ * @throws ServiceException
+ */
 	public boolean productCreate(Product product) throws ServiceException {
 		ProductDAO productDAO = new ProductDAO();
 		try {
@@ -36,6 +36,11 @@ public class ProductService {
 	}
 	  
 //list product
+	/**
+	 * 
+	 * @return
+	 * @throws ServiceException
+	 */
     public List<Product> getAllProductsList() throws ServiceException {
         try {
             return ProductDAO.getAllProducts();
@@ -44,6 +49,12 @@ public class ProductService {
         }
     }
 // update product
+    /**
+     * 
+     * @param product
+     * @return
+     * @throws ServiceException
+     */
 	public boolean productUpdate(Product product) throws ServiceException {
 		ProductDAO productDAO = new ProductDAO();
 		try {
@@ -60,6 +71,12 @@ public class ProductService {
 		}
 	}
 // delete product
+	/**
+	 * 
+	 * @param id
+	 * @return
+	 * @throws ServiceException
+	 */
 	public boolean productDelete(int id) throws ServiceException {
 		ProductDAO productDAO = new ProductDAO();
 		try {

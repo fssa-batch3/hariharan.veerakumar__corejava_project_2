@@ -30,7 +30,7 @@ public class UserService {
 				System.out.println("Registration not Unsuccessful!");
 				return false;
 			}
-
+ 
 		} catch (DAOException | InvalidUserException e) {
 			throw new ServiceException(e);
 		}

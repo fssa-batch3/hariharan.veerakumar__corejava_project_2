@@ -1,4 +1,4 @@
-package com.fssa.crazyfitness.services.testuserservice;
+package com.fssa.crazyfitness.services;
 import static org.junit.jupiter.api.Assertions.*;
 
 
@@ -7,7 +7,6 @@ import org.junit.jupiter.api.Test;
 
 
 import  com.fssa.crazyfitness.model.User;
-import  com.fssa.crazyfitness.services.UserService;
 import  com.fssa.crazyfitness.services.exceptions.ServiceException;
 
 

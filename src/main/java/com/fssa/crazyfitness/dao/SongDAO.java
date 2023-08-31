@@ -9,7 +9,7 @@ import java.sql.SQLException;
 import com.fssa.crazyfitness.dao.exceptions.DAOException;
 import com.fssa.crazyfitness.model.Song;
 import com.fssa.crazyfitness.util.ConnectionDb;
-import com.fssa.crazyfitness.util.DatabaseException;
+
 
 public class SongDAO {
 
@@ -25,7 +25,7 @@ public class SongDAO {
 				rs.close();
 				return false;
 			}
-			rs.close();
+			rs.close(); 
 
 			insertPst.setInt(1, song.getSongId());
 			insertPst.setString(2, song.getSongName());
