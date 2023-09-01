@@ -20,6 +20,7 @@ public class SongValidator {
 	public static boolean validateId(int id) throws InvalidSongException {
 		if (id <= 0) {
 			throw new InvalidSongException("Song Id should not be in negative values and 0");
+
 		}
 		return true;
 	}

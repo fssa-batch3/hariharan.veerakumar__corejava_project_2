@@ -76,6 +76,7 @@ public class Product {
 	
 	public Product() {
 	}
+	
 	@Override
 	public String toString() {
 		return "Product [product_image=" + productImage + ", product_name=" + productName + ", product_price="

@@ -70,16 +70,16 @@ public class ProductValidator {
 			throw new InvalidProductException("The Product image URL should not be empty");
 		}
 
-		return true;
-//		String imageRegex = "^(https|://.+\\.(jpg|jpeg|png|gif|bmp))$";
-//		Pattern pattern = Pattern.compile(imageRegex);
-//		Matcher matcher = pattern.matcher(url);
-//		if (matcher.matches()) {
-//			return true;
-//		} else {
-//			throw new InvalidProductException(
-//					"The Product image URL can contain https or http in starting and in ending jpg|jpeg|png|gif|bmp ");
-//		}
+
+		String imageRegex = "^(https:|http:).*?|(gif|jpeg|png|jpg|bmp)";
+		Pattern pattern = Pattern.compile(imageRegex);
+		Matcher matcher = pattern.matcher(url);
+		if (matcher.matches()) {
+			return true;
+		} else {
+			throw new InvalidProductException(
+					"The Product image URL can contain https or http in starting and in ending jpg|jpeg|png|gif|bmp ");
+		}
 	}
 
 	public static boolean validateId(int id) throws InvalidProductException {
