@@ -41,6 +41,19 @@ public class ProductService {
 			throw new ServiceException(e);
 		}
 	}
+/**
+ * 
+ * @param id
+ * @return
+ * @throws ServiceException
+ */
+	public Product getProductById(int id)throws ServiceException{	
+		try {
+			  return ProductDAO.getProductById(id);
+		} catch (DAOException e) {
+			throw new ServiceException(e);
+		}
+	}
 
 // update product
 	/**
@@ -76,4 +89,5 @@ public class ProductService {
 			throw new ServiceException(e);
 		}
 	}
+
 }

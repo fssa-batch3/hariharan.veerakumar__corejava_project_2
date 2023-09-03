@@ -53,7 +53,7 @@ public class UserDAO {
 
 				PreparedStatement insertPst = connect.prepareStatement(insertQuery)) {
 
-			if (emailCheck(user.getEmail())) {
+			if (!emailCheck(user.getEmail())) {
 				// If the email doesn't exist, proceed with the registration
 				insertPst.setString(1, user.getFname());
 				insertPst.setString(2, user.getLname());
@@ -79,15 +79,17 @@ public class UserDAO {
 	 * @param email
 	 * @return
 	 * @throws DAOException
+	 * @throws SQLException
 	 */
 	public User getUserByEmail(String email) throws DAOException {
 		final String selectQuery = "SELECT * FROM user WHERE email = ?";
 
+		ResultSet rs = null;
 		try (Connection connect = ConnectionDb.getConnection();
 				PreparedStatement pst = connect.prepareStatement(selectQuery)) {
 			pst.setString(1, email);
 
-			ResultSet rs = pst.executeQuery();
+			rs = pst.executeQuery();
 			if (rs.next()) {
 				User user = new User();
 				user.setEmail(rs.getString("email"));
@@ -100,13 +102,19 @@ public class UserDAO {
 
 				return user;
 			}
+			rs.close();
 		} catch (SQLException | DatabaseException e) {
 			throw new DAOException(e);
-		}
-
+		} 
 		return null;
+
 	}
 
+/**
+ * 
+ * @return
+ * @throws DAOException
+ */
 	public static List<User> getAllUsers() throws DAOException {
 		final String selectAllUserQuery = "SELECT * FROM user";
 		List<User> userList = new ArrayList<>();
@@ -125,7 +133,7 @@ public class UserDAO {
 				userList.add(user);
 			}
 
-		} catch (SQLException |DatabaseException e) {
+		} catch (SQLException | DatabaseException e) {
 			throw new DAOException(e);
 		}
 		return userList;

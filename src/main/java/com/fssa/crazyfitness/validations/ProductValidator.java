@@ -35,12 +35,10 @@ public class ProductValidator {
 			throw new InvalidProductException("Product should not be null");
 		}
 		return validateProductName(product.getProductName()) && validateProductImage(product.getProductImage())
-				&& validateProductPrice(product.getProductPrice()) 
+				&& validateProductPrice(product.getProductPrice())
 				&& validateDescrption(product.getProductDescrption());
 
 	}
-
-
 
 	public static boolean validateProductName(String name) throws InvalidProductException {
 		if (name == null)
@@ -70,16 +68,8 @@ public class ProductValidator {
 			throw new InvalidProductException("The Product image URL should not be empty");
 		}
 
+		return true;
 
-		String imageRegex = "^(https:|http:).*?|(gif|jpeg|png|jpg|bmp)";
-		Pattern pattern = Pattern.compile(imageRegex);
-		Matcher matcher = pattern.matcher(url);
-		if (matcher.matches()) {
-			return true;
-		} else {
-			throw new InvalidProductException(
-					"The Product image URL can contain https or http in starting and in ending jpg|jpeg|png|gif|bmp ");
-		}
 	}
 
 	public static boolean validateId(int id) throws InvalidProductException {

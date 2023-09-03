@@ -51,7 +51,7 @@ public class ProductDAO {
 
 		try (Connection connect = ConnectionDb.getConnection();
 				PreparedStatement insertPst = connect.prepareStatement(insertQuery);) {
-			if (productNameCheck(product.getProductName())) {
+			if (!productNameCheck(product.getProductName())) {
 				insertPst.setString(1, product.getProductImage());
 				insertPst.setString(2, product.getProductName());
 				insertPst.setInt(3, product.getProductPrice());
@@ -115,6 +115,39 @@ public class ProductDAO {
 			throw new DAOException(e);
 		}
 
+	}
+	
+	/**
+	 * 
+	 * @param id
+	 * @return
+	 * @throws DAOException
+	 * @throws SQLException
+	 */
+	public static Product getProductById(int id) throws DAOException{
+		final String selectProductQuery  = "SELECT * FROM product WHERE product_id=?";
+		ResultSet rs = null;
+		try(Connection connect = ConnectionDb.getConnection();
+				PreparedStatement selectPst = connect.prepareStatement(selectProductQuery);){
+			selectPst.setInt(1, id);
+			rs = selectPst.executeQuery();
+			if(rs.next()) {
+				Product product = new Product();
+				product.setProductId(rs.getInt("product_id"));
+				product.setProductImage(rs.getString("image_url"));
+				product.setProductName(rs.getString("product_name"));
+				product.setProductPrice(rs.getInt("price"));
+				product.setProductDescrption(rs.getString("description"));
+				
+				return product;
+			}
+			else {
+				rs.close();
+			}
+		}catch(SQLException | DatabaseException e) {
+			throw new DAOException(e);
+		}
+		return null;
 	}
 
 //	delete product
