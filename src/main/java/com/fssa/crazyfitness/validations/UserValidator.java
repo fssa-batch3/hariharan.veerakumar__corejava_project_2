@@ -21,8 +21,20 @@ public class UserValidator {
 			throw new InvalidUserException("User details should not be NULL");
 		}
 		
-		return validateName(user.getFname()) && validateName(user.getLname()) && validateEmail(user.getEmail())
-				&& validatePassword(user.getPassword()) && validatePhone(user.getPhone()) && validateAge(user.getAge());
+//		return validateName(user.getFname()) && validateName(user.getLname()) && validateEmail(user.getEmail())
+//				&& validatePassword(user.getPassword()) && validatePhone(user.getPhone()) && validateAge(user.getAge());
+		   // Validate individual user attributes
+        boolean isFirstNameValid = validateName(user.getFname());
+        boolean isLastNameValid = validateName(user.getLname());
+        boolean isEmailValid = validateEmail(user.getEmail());
+        boolean isPasswordValid = validatePassword(user.getPassword());
+        boolean isPhoneValid = validatePhone(user.getPhone());
+        boolean isAgeValid = validateAge(user.getAge());
+
+        // Combine validation results
+        return isFirstNameValid && isLastNameValid && isEmailValid &&
+               isPasswordValid && isPhoneValid && isAgeValid;
+		
 
 	}
 
@@ -88,7 +100,7 @@ public class UserValidator {
 			return true;
 		} else {
 			throw new InvalidUserException(
-					"Password must conatain a special character and a numeric value and a upper case and lower case also minimum 8 characters is required");
+					"Password must contain a special character and a numeric value and a upper case and lower case also minimum 8 characters is required");
 		}
 
 	}
