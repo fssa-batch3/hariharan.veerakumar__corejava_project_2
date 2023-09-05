@@ -16,13 +16,17 @@ public class UserValidator {
 	 * @throws InvalidUserException
 	 */
 
-	public static boolean validateUser(User user) throws InvalidUserException {
+	public static void validateUser(User user) throws InvalidUserException {
 		if (user == null) {
 			throw new InvalidUserException("User details should not be NULL");
 		}
-		
-		return validateName(user.getFname()) && validateName(user.getLname()) && validateEmail(user.getEmail())
-				&& validatePassword(user.getPassword()) && validatePhone(user.getPhone()) && validateAge(user.getAge());
+
+		validateName(user.getFname());
+		validateName(user.getLname());
+		validateEmail(user.getEmail());
+		validatePassword(user.getPassword());
+		validatePhone(user.getPhone());
+		validateAge(user.getAge());
 
 	}
 
@@ -90,7 +94,6 @@ public class UserValidator {
 			throw new InvalidUserException(
 					"Password must contain a special character and a numeric value and a upper case and lower case also minimum 8 characters is required");
 		}
-
 	}
 
 	public static boolean validateEmail(String email) throws InvalidUserException {
@@ -138,11 +141,11 @@ public class UserValidator {
 		}
 
 	}
+
 	public static boolean validateId(int id) throws InvalidUserException {
-		if(id <= 0) {
+		if (id <= 0) {
 			throw new InvalidUserException("User Id should not be zero or in negative values");
-		}else
+		} else
 			return true;
 	}
 }
-
