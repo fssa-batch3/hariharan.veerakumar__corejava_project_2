@@ -54,4 +54,35 @@ public class UserService {
 			throw new ServiceException(e);
 		}
 	}
+/**
+ * 
+ * @param user
+ * @return
+ * @throws ServiceException
+ */
+	public boolean userUpdate(User user) throws ServiceException {
+		UserDAO userDAO = new UserDAO();
+		try {
+			UserValidator.validateUser(user);
+			return userDAO.update(user);
+		} catch (DAOException | InvalidUserException e) {
+			throw new ServiceException(e);
+		}
+	}
+
+	/**
+	 * 
+	 * @param id
+	 * @return
+	 * @throws ServiceException
+	 */
+	public boolean userDelete(int id) throws ServiceException {
+		UserDAO userDAO = new UserDAO();
+		try {
+			UserValidator.validateId(id);
+			return userDAO.deleteUser(id);
+		} catch (DAOException | InvalidUserException e) {
+			throw new ServiceException(e);
+		}
+	}
 }

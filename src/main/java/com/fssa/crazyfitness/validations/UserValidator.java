@@ -21,20 +21,8 @@ public class UserValidator {
 			throw new InvalidUserException("User details should not be NULL");
 		}
 		
-//		return validateName(user.getFname()) && validateName(user.getLname()) && validateEmail(user.getEmail())
-//				&& validatePassword(user.getPassword()) && validatePhone(user.getPhone()) && validateAge(user.getAge());
-		   // Validate individual user attributes
-        boolean isFirstNameValid = validateName(user.getFname());
-        boolean isLastNameValid = validateName(user.getLname());
-        boolean isEmailValid = validateEmail(user.getEmail());
-        boolean isPasswordValid = validatePassword(user.getPassword());
-        boolean isPhoneValid = validatePhone(user.getPhone());
-        boolean isAgeValid = validateAge(user.getAge());
-
-        // Combine validation results
-        return isFirstNameValid && isLastNameValid && isEmailValid &&
-               isPasswordValid && isPhoneValid && isAgeValid;
-		
+		return validateName(user.getFname()) && validateName(user.getLname()) && validateEmail(user.getEmail())
+				&& validatePassword(user.getPassword()) && validatePhone(user.getPhone()) && validateAge(user.getAge());
 
 	}
 
@@ -150,4 +138,11 @@ public class UserValidator {
 		}
 
 	}
+	public static boolean validateId(int id) throws InvalidUserException {
+		if(id <= 0) {
+			throw new InvalidUserException("User Id should not be zero or in negative values");
+		}else
+			return true;
+	}
 }
+

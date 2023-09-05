@@ -92,6 +92,7 @@ public class UserDAO {
 			rs = pst.executeQuery();
 			if (rs.next()) {
 				User user = new User();
+				user.setUserId(rs.getInt("user_id"));
 				user.setEmail(rs.getString("email"));
 				user.setFname(rs.getString("first_name"));
 				user.setLname(rs.getString("last_name"));
@@ -105,16 +106,48 @@ public class UserDAO {
 			rs.close();
 		} catch (SQLException | DatabaseException e) {
 			throw new DAOException(e);
-		} 
+		}
 		return null;
 
 	}
 
-/**
- * 
- * @return
- * @throws DAOException
- */
+	/**
+	 * 
+	 * @param id
+	 * @return
+	 * @throws DAOException
+	 */
+	public User getUserById(int id) throws DAOException {
+		final String selectQuery = "SELECT * FROM user WHERE user_id= ? ";
+		ResultSet rs = null;
+		try (Connection connect = ConnectionDb.getConnection();
+				PreparedStatement pst = connect.prepareStatement(selectQuery);) {
+			pst.setInt(1, id);
+			rs = pst.executeQuery();
+			if (rs.next()) {
+				User user = new User();
+				user.setUserId(rs.getInt("user_id"));
+				user.setEmail(rs.getString("email"));
+				user.setFname(rs.getString("first_name"));
+				user.setLname(rs.getString("last_name"));
+				user.setAge(rs.getInt("age"));
+				user.setPassword(rs.getString("password"));
+				user.setPhone(rs.getString("phone"));
+				user.setAddress(rs.getString("address"));
+				return user;
+			}
+			rs.close();
+		} catch (SQLException | DatabaseException e) {
+			throw new DAOException(e);
+		}
+		return null;
+	}
+
+	/**
+	 * 
+	 * @return
+	 * @throws DAOException
+	 */
 	public static List<User> getAllUsers() throws DAOException {
 		final String selectAllUserQuery = "SELECT * FROM user";
 		List<User> userList = new ArrayList<>();
@@ -164,6 +197,24 @@ public class UserDAO {
 			throw new DAOException(e);
 		}
 
+	}
+/**
+ * 
+ * @param id
+ * @return
+ * @throws DAOException
+ */
+	public boolean deleteUser(int id) throws DAOException {
+		final String deleteQuery = "DELETE FROM user WHERE user_id=?";
+		try (Connection connect = ConnectionDb.getConnection();
+				PreparedStatement deletePst = connect.prepareStatement(deleteQuery);) {
+			deletePst.setInt(1, id);
+			int rows = deletePst.executeUpdate();
+			return (rows == 1);
+
+		} catch (SQLException | DatabaseException e) {
+			throw new DAOException(e);
+		}
 	}
 
 }
