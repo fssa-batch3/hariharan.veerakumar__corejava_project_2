@@ -32,13 +32,15 @@ public class ProductValidator {
 	 * @return
 	 * @throws InvalidProductException
 	 */
-	public static boolean validateProduct(Product product) throws InvalidProductException {
+	public static void validateProduct(Product product) throws InvalidProductException {
 		if (product == null) {
 			throw new InvalidProductException("Product should not be null");
 		}
-		return validateProductName(product.getProductName()) && validateProductImage(product.getProductImage())
-				&& validateProductPrice(product.getProductPrice())
-				&& validateDescrption(product.getProductDescrption());
+		validateProductName(product.getProductName()) ;
+		 validateProductImage(product.getProductImage());
+		 validateProductPrice(product.getProductPrice());
+		 validateDescrption(product.getProductDescrption());
+
 
 	}
 
