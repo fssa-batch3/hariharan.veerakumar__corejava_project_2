@@ -14,7 +14,28 @@ import com.fssa.crazyfitness.util.ConnectionDb;
 import com.fssa.crazyfitness.util.DatabaseException;
 
 public class UserDAO {
+	
+	private static final String COLUMN_USER_ID  = "user_id";
+	private static final String COLUMN_FNAME = "first_name";
+	private static final String COLUMN_LNAME = "last_name";
+	private static final String COLUMN_AGE = "age";
+	private static final String COLUMN_EMAIL  = "email";
+	private static final String COLUMN_PASSWORD = "password";
+	private static final String COLUMN_PHONE = "phone";
+	private static final String COLUMN_ADDRESS = "address";
 
+	private static User mapResultSetToUser(ResultSet rs) throws SQLException {
+		User user = new User();
+		user.setUserId(rs.getInt(COLUMN_USER_ID));
+		user.setEmail(rs.getString(COLUMN_EMAIL ));
+		user.setFname(rs.getString(COLUMN_FNAME));
+		user.setLname(rs.getString(COLUMN_LNAME));
+		user.setAge(rs.getInt(COLUMN_AGE));
+		user.setPassword(rs.getString(COLUMN_PASSWORD));
+		user.setPhone(rs.getString(COLUMN_PHONE));
+		user.setAddress(rs.getString(COLUMN_ADDRESS));
+		return user;
+	}
 	/**
 	 * @param email
 	 * @return
@@ -91,17 +112,7 @@ public class UserDAO {
 
 			rs = pst.executeQuery();
 			if (rs.next()) {
-				User user = new User();
-				user.setUserId(rs.getInt("user_id"));
-				user.setEmail(rs.getString("email"));
-				user.setFname(rs.getString("first_name"));
-				user.setLname(rs.getString("last_name"));
-				user.setAge(rs.getInt("age"));
-				user.setPassword(rs.getString("password"));
-				user.setPhone(rs.getString("phone"));
-				user.setAddress(rs.getString("address"));
-
-				return user;
+			 return mapResultSetToUser(rs);
 			}
 			rs.close();
 		} catch (SQLException | DatabaseException e) {
@@ -110,6 +121,7 @@ public class UserDAO {
 		return null;
 
 	}
+	
 
 	/**
 	 * 
@@ -125,16 +137,7 @@ public class UserDAO {
 			pst.setInt(1, id);
 			rs = pst.executeQuery();
 			if (rs.next()) {
-				User user = new User();
-				user.setUserId(rs.getInt("user_id"));
-				user.setEmail(rs.getString("email"));
-				user.setFname(rs.getString("first_name"));
-				user.setLname(rs.getString("last_name"));
-				user.setAge(rs.getInt("age"));
-				user.setPassword(rs.getString("password"));
-				user.setPhone(rs.getString("phone"));
-				user.setAddress(rs.getString("address"));
-				return user;
+				return mapResultSetToUser(rs);
 			}
 			rs.close();
 		} catch (SQLException | DatabaseException e) {
@@ -155,14 +158,7 @@ public class UserDAO {
 				Statement statement = connect.createStatement();
 				ResultSet rs = statement.executeQuery(selectAllUserQuery)) {
 			while (rs.next()) {
-				int userId = rs.getInt("user_id");
-				String userFname = rs.getString("first_name");
-				String userLname = rs.getString("last_name");
-				int userAge = rs.getInt("age");
-				String userEmail = rs.getString("email");
-				String userPhone = rs.getString("phone");
-				String userAddress = rs.getString("address");
-				User user = new User(userId, userFname, userLname, userAge, userEmail, userPhone, userAddress);
+				User user = mapResultSetToUser(rs);
 				userList.add(user);
 			}
 
