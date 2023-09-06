@@ -54,12 +54,13 @@ public class UserService {
 			throw new ServiceException(e);
 		}
 	}
-/**
- * 
- * @param user
- * @return
- * @throws ServiceException
- */
+
+	/**
+	 * 
+	 * @param user
+	 * @return
+	 * @throws ServiceException
+	 */
 	public boolean userUpdate(User user) throws ServiceException {
 		UserDAO userDAO = new UserDAO();
 		try {
@@ -85,4 +86,45 @@ public class UserService {
 			throw new ServiceException(e);
 		}
 	}
+
+	/**
+	 * 
+	 * @param email
+	 * @return
+	 * @throws ServiceException
+	 */
+	public User getUserbyEmail(String email) throws ServiceException {
+		UserDAO userDAO = new UserDAO();
+		User user = new User();
+		try {
+			UserValidator.validateEmail(email);
+			user = userDAO.getUserByEmail(email);
+			return user;
+		} catch (InvalidUserException | DAOException e) {
+			throw new ServiceException(e);
+		}
+
+	}
+/**
+ * 
+ * @param id
+ * @return
+ * @throws ServiceException
+ */
+	public User getUserbyId(int id) throws ServiceException {
+		UserDAO userDAO = new UserDAO();
+		User user = new User();
+
+		try {
+			UserValidator.validateId(id);
+			user = userDAO.getUserById(id);
+			return user;
+		} catch (DAOException | InvalidUserException e) {
+			throw new ServiceException(e);
+		}
+
+	}
+
+
+
 }
