@@ -10,7 +10,7 @@ public class ProductValidator {
 
 	/**
 	 * 
-	 * @param product
+	 * @param product 
 	 * @return
 	 * @throws InvalidProductException
 	 */

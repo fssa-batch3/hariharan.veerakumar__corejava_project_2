@@ -17,7 +17,7 @@ public class ProductDAO {
 	/**
 	 * @param productName
 	 * @return
-	 * @throws SQLException
+	 * @throws SQLException 
 	 * @throws DAOException 
 	 */
 	public boolean productNameCheck(String productName) throws SQLException, DAOException {
@@ -27,7 +27,6 @@ public class ProductDAO {
 				PreparedStatement selectPst = connect.prepareStatement(selectQuery);) {
 			selectPst.setString(1, productName);
 			rs = selectPst.executeQuery();
-
 			// Product name already exists, do not allow in database
 			return rs.next();
 		} catch (DatabaseException e) {

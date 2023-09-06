@@ -11,7 +11,7 @@ import com.fssa.crazyfitness.validations.exceptions.InvalidUserException;
 public class UserValidator {
 
 	/**
-	 * @param user
+	 * @param user 
 	 * @return
 	 * @throws InvalidUserException
 	 */

@@ -7,7 +7,7 @@ import java.sql.SQLException;
 public class ConnectionDb {
 	public static Connection getConnection() throws DatabaseException {
 		Connection connect = null;
-
+ 
 		String url;
 		String user;
 		String password;

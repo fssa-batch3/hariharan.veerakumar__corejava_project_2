@@ -8,14 +8,14 @@ import com.fssa.crazyfitness.validations.exceptions.InvalidProductException;
 
  class TestProductName {
 	@Test
-	 void testValidName() {
+	 void testValidName() { 
 		try {
 			assertTrue(ProductValidator.validateProductName("DumbBells"));
 		} catch (InvalidProductException e) {
 			e.printStackTrace();
 			fail();
 		}
-	}
+	} 
 	 
 	@Test
 	 void testInvalidProductName() {

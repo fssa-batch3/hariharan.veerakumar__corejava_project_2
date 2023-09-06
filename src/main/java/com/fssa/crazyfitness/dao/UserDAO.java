@@ -14,7 +14,7 @@ import com.fssa.crazyfitness.util.ConnectionDb;
 import com.fssa.crazyfitness.util.DatabaseException;
 
 public class UserDAO {
-	
+	 
 	private static final String COLUMN_USER_ID  = "user_id";
 	private static final String COLUMN_FNAME = "first_name";
 	private static final String COLUMN_LNAME = "last_name";
@@ -50,7 +50,6 @@ public class UserDAO {
 			rs = selectPst.executeQuery();
 
 			// Email already exists, do not proceed with registration
-
 			return rs.next();
 
 		} catch (DatabaseException e) {
