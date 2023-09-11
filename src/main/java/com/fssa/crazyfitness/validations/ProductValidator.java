@@ -33,7 +33,7 @@ public class ProductValidator {
 	 * @throws InvalidProductException
 	 */
 	public static void validateProduct(Product product) throws InvalidProductException {
-		if (product == null) {
+		if (product == null) { 
 			throw new InvalidProductException("Product should not be null");
 		}
 		validateProductName(product.getProductName()) ;

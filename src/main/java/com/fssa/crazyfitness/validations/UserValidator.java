@@ -13,7 +13,7 @@ public class UserValidator {
 	/**
 	 * @param user 
 	 * @return
-	 * @throws InvalidUserException
+	 * @throws InvalidUserException 
 	 */
 
 	public static void validateUser(User user) throws InvalidUserException {

@@ -19,7 +19,7 @@ public class ProductService {
 	 */
 	public boolean productCreate(Product product) throws ServiceException {
 		ProductDAO productDAO = new ProductDAO();
-
+ 
 		try {
 			ProductValidator.validateProduct(product);
 			return productDAO.createProduct(product);

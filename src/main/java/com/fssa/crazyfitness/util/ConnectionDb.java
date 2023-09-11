@@ -11,7 +11,7 @@ public class ConnectionDb {
 		String url;
 		String user;
 		String password;
-		// Cloud DB
+		// Cloud DB 
 		url = System.getenv("DB_URL");
 		user = System.getenv("DB_USER");
 		password = System.getenv("DB_PASSWORD");

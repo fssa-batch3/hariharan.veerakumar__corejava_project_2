@@ -13,7 +13,7 @@ import com.fssa.crazyfitness.model.User;
 import com.fssa.crazyfitness.util.ConnectionDb;
 import com.fssa.crazyfitness.util.DatabaseException;
 
-public class UserDAO {
+public class UserDAO { 
 	 
 	private static final String COLUMN_USER_ID  = "user_id";
 	private static final String COLUMN_FNAME = "first_name";

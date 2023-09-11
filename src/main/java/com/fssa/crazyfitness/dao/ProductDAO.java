@@ -44,7 +44,7 @@ public class ProductDAO {
 	 * @param product
 	 * @return
 	 * @throws DAOException
-	 */
+	 */ 
 	public boolean createProduct(Product product) throws DAOException {
 		final String insertQuery = "INSERT INTO product (image_url,product_name,price,description) VALUES(?,?,?,?)";
 
@@ -62,7 +62,7 @@ public class ProductDAO {
 			}
 		} catch (SQLException |DatabaseException e) {
 			throw new DAOException(e);
-		}
+		} 
 	}
 
 //	Read product
