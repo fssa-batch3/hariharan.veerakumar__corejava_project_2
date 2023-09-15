@@ -67,7 +67,7 @@ public class UserDAO {
 	 * @throws DAOException
 	 */
 	public boolean register(User user) throws DAOException {
-		final String insertQuery = "INSERT INTO user (first_name,last_name,age,email,password,phone,address) VALUES (?,?,?,?,?,?,?)";
+		final String insertQuery = "INSERT INTO user (first_name,last_name,age,email,password,phone) VALUES (?,?,?,?,?,?)";
 
 		try (Connection connect = ConnectionDb.getConnection();
 
@@ -81,7 +81,7 @@ public class UserDAO {
 				insertPst.setString(4, user.getEmail());
 				insertPst.setString(5, user.getPassword());
 				insertPst.setString(6, user.getPhone());
-				insertPst.setString(7, user.getAddress());
+
 
 				int rows = insertPst.executeUpdate();
 				return (rows == 1);

@@ -13,7 +13,7 @@ import com.fssa.crazyfitness.services.exceptions.ServiceException;
   void testValidUserDelete() {
 	UserService userService = new UserService();
 	try {
-		assertTrue(userService.userDelete(2));
+		assertTrue(userService.userDelete(8));
 	} catch (ServiceException e) {
 		e.printStackTrace();
 		fail();

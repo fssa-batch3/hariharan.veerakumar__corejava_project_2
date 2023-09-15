@@ -1,8 +1,0 @@
--------------------------------------------------------------------------------
-Test set: com.fssa.crazyfitness.services.testUser.TestRegisterFeature
--------------------------------------------------------------------------------
-Tests run: 3, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.757 s <<< FAILURE! - in com.fssa.crazyfitness.services.testUser.TestRegisterFeature
-testRegistrationSuccess  Time elapsed: 0.375 s  <<< FAILURE!
-org.opentest4j.AssertionFailedError: expected: <true> but was: <false>
-	at com.fssa.crazyfitness.services.testUser.TestRegisterFeature.testRegistrationSuccess(TestRegisterFeature.java:58)
-

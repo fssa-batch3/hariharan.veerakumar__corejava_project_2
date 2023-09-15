@@ -81,7 +81,15 @@ public class User {
 		this.address = address;
 	}
 	
-	
+	public User(String fname, String lname, int age, String email, String password, String phone) {
+		super();
+		this.fname = fname;
+		this.lname = lname;
+		this.age = age;
+		this.email = email;
+		this.password = password;
+		this.phone = phone;
+	}
 	
 	public int getUserId() {
 		return userId;

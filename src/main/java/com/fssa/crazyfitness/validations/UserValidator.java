@@ -36,7 +36,6 @@ public class UserValidator {
 		UserDAO userDAO = new UserDAO();
 		try {
 			validateEmail(email);
-			validatePassword(providedPassword);
 				User storedUser = userDAO.getUserByEmail(email);
 				if (storedUser != null) {
 					String storedPassword = storedUser.getPassword();
@@ -135,10 +134,10 @@ public class UserValidator {
 	}
 
 	public static boolean validateAge(int age) throws InvalidUserException {
-		if (age >= 10 && age < 100) {
+		if (age >= 12 && age < 100) {
 			return true;
 		} else {
-			throw new InvalidUserException("Age must between 9 to 99");
+			throw new InvalidUserException("Age must between 12 to 99");
 		}
 
 	}
