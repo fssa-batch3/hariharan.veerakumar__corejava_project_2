@@ -8,41 +8,36 @@ import com.fssa.crazyfitness.validations.UserValidator;
 import com.fssa.crazyfitness.validations.exceptions.InvalidUserException;
 
 class TestValidateEmail {
-	Throwable exception;
-	@Test
-	void testValidEmail() {
-		try {
-			assertTrue(UserValidator.validateEmail("hari10haran@gmail.com"));
-		} catch (InvalidUserException e) {
-			e.printStackTrace();
-			fail();
-		}
 
+	@Test
+	void testValidEmail() throws InvalidUserException {
+	       // Valid email addresses
+        assertTrue(UserValidator.validateEmail("hari@gmail.com"));
+        assertTrue(UserValidator.validateEmail("hari.kumar@gmail.in"));
 	}
 
 	@Test 
-	void testInvalidEmailMissingAtExpectValidation() {
-		try {
-			UserValidator.validateEmail("harigmail.com");
-			 exception = assertThrows(InvalidUserException.class, () -> {
-			});
-			assertEquals("Invalid Email", exception.getMessage());
-		} catch (InvalidUserException e) {
-			e.printStackTrace();
-		}
+	void testInvalidEmailMissingAt() {
+	       // Invalid email addresses (missing '@')
+        assertThrows(InvalidUserException.class, () -> {
+            UserValidator.validateEmail("invalid.email.com");
+        });
 
 	}
 
 	@Test
-	void testInvalidEmailMissingPeriodExpectException() {
-		try {
-			UserValidator.validateEmail("hari@gmailcom");
-			 exception = assertThrows(InvalidUserException.class, () -> {
-			});
-			assertEquals("Invalid Email", exception.getMessage());
-		} catch (InvalidUserException e) {
-			e.printStackTrace();
-		}
-
+	void testInvalidEmailMissingPeriod() {
+	       // Invalid email addresses (missing '.')
+        assertThrows(InvalidUserException.class, () -> {
+            UserValidator.validateEmail("invalid@emailcom");
+        });
 	}
-}
+	@Test
+	void testInvalidUpperCaseEmail() {
+	     // Invalid email addresses (uppercase characters)
+        assertThrows(InvalidUserException.class, () -> {
+            UserValidator.validateEmail("Invalid@Email.com");
+        });
+    }
+	}
+

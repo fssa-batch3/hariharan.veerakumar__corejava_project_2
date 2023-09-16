@@ -8,53 +8,36 @@ import com.fssa.crazyfitness.validations.UserValidator;
 import com.fssa.crazyfitness.validations.exceptions.InvalidUserException;
 
  class TestValidateName {
-		Throwable exception;
+		
 @Test
- void testValidName() {
-
-	try {
-		assertTrue(UserValidator.validateName("Hariharan"));
-	} catch (InvalidUserException e) {
-		e.printStackTrace();
-		fail();
-	}
+ void testValidName() throws InvalidUserException {
+    // Valid names
+    assertTrue(UserValidator.validateName("Hari haran"));
+    assertTrue(UserValidator.validateName("Veerakumar"));
 }
 @Test 
- void testInValidNameUsingNumbersExpectValidation() {
-	try {
-		UserValidator.validateName("123456");
-		 exception = assertThrows(InvalidUserException.class, () -> {
-		});
-		assertEquals("Invalid name", exception.getMessage());
-	} catch (InvalidUserException e) {
-		e.printStackTrace();
-	
-	}
+ void testInValidNameHavingNumbers() {
+    // Invalid names (contains numbers)
+    assertThrows(InvalidUserException.class, () -> {
+        UserValidator.validateName("Hari123");
+    });
 
 }
 @Test
- void testInValidNameLesserLengthExpectValidation() {
-	try {
-	UserValidator.validateName("Ha");
-		 exception = assertThrows(InvalidUserException.class, () -> {
-		});
-		assertEquals("Invalid name", exception.getMessage());
-	} catch (InvalidUserException e) {
-		e.printStackTrace();
-		
-	}
+ void testInValidNameLesserLength() {
+    // Invalid names (less than 3 characters)
+    assertThrows(InvalidUserException.class, () -> {
+        UserValidator.validateName("Ha");
+    });
+
 }
 @Test
  void testInValidNameGreaterLengthExpectValidation() {
 
-	try {
-		UserValidator.validateName("Hariharanvhariharanvhariharanv");
-			 exception = assertThrows(InvalidUserException.class, () -> {
-			});
-			assertEquals("Invalid name", exception.getMessage());
-		} catch (InvalidUserException e) {
-			e.printStackTrace();
-			
-		}
+    // Invalid names (more than 30 characters)
+    assertThrows(InvalidUserException.class, () -> {
+        UserValidator.validateName("ThisIsAVeryLongNameThatExceedsThe30CharacterLimit");
+    });
+
 } 
 }

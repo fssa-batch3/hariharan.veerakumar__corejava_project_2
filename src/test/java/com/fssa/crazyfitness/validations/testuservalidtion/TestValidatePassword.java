@@ -7,87 +7,53 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
  class TestValidatePassword {
-	 Throwable exception;
+
 	@Test
-	 void testValidPassword() {
-		try {
-			assertTrue(UserValidator.validatePassword("Hari@2004"));
-		} catch (InvalidUserException e) {
-			
-			e.printStackTrace();
-			fail();
-		}
+	 void testValidPassword() throws InvalidUserException {
+        // Valid passwords
+        assertTrue(UserValidator.validatePassword("Passw0rd!"));
+   //     assertTrue(UserValidator.validatePassword("SecurePassword123!"));
 	
 	}
 	 
 	@Test
 	 void testInvalidPasswordWithoutSpecialCharacter() {
-		
-		try {
-			UserValidator.validatePassword("Hari2004");
-			 exception = assertThrows(InvalidUserException.class, () -> {
-				 
-			 });
-			 assertEquals("Invalid Password",exception.getMessage());
-			
-		} catch (InvalidUserException e) {
-		e.printStackTrace();
-		}
+        // Invalid passwords (no special character)
+        assertThrows(InvalidUserException.class, () -> {
+            UserValidator.validatePassword("Password123");
+        });
+
 	}
 	@Test
 	 void testInvalidPasswordWithoutNumber() {
 	
-		try {
-			UserValidator.validatePassword("Hari$%^&&");
-			 exception = assertThrows(InvalidUserException.class, () -> {
-				 
-			 });
-			 assertEquals("Invalid Password",exception.getMessage());
-			
-		} catch (InvalidUserException e) {
-		e.printStackTrace();
-		}
+        // Invalid passwords (no numeric character)
+        assertThrows(InvalidUserException.class, () -> {
+            UserValidator.validatePassword("Password!");
+        });
 	}
 	@Test
 	 void testInvalidPasswordWithoutUpperCase() {
-		try {
-			UserValidator.validatePassword("hari2004");
-			 exception = assertThrows(InvalidUserException.class, () -> {
-				 
-			 });
-			 assertEquals("Invalid Password",exception.getMessage());
-			
-		} catch (InvalidUserException e) {
-		e.printStackTrace();
-		}
+        // Invalid passwords (no uppercase letter)
+        assertThrows(InvalidUserException.class, () -> {
+            UserValidator.validatePassword("password123!");
+        });
 	}
 	@Test
 	 void testInvalidPasswordWithoutLowerCase() {
 
-		try {
-			UserValidator.validatePassword("HARI2004");
-			 exception = assertThrows(InvalidUserException.class, () -> {
-				 
-			 });
-			 assertEquals("Invalid Password",exception.getMessage());
-			
-		} catch (InvalidUserException e) {
-		e.printStackTrace();
-		}
+        // Invalid passwords (no lowercase letter)
+        assertThrows(InvalidUserException.class, () -> {
+            UserValidator.validatePassword("PASSWORD123!");
+        });
 	}
 	@Test
 	 void testInvalidPasswordLessLength() {
-	
-		try {
-			UserValidator.validatePassword("hari");
-			 exception = assertThrows(InvalidUserException.class, () -> {
-				 
-			 });
-			 assertEquals("Invalid Password",exception.getMessage());
-			
-		} catch (InvalidUserException e) {
-		e.printStackTrace();
-		}
+        // Invalid passwords (less than 8 characters)
+        assertThrows(InvalidUserException.class, () -> {
+            UserValidator.validatePassword("Pwd123!");
+        });
+
 	}
 }
 

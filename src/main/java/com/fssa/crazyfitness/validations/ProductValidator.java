@@ -22,7 +22,7 @@ public class ProductValidator {
 		 validateProductName(product.getProductName()) ;
 		 validateProductImage(product.getProductImage());
 		 validateProductPrice(product.getProductPrice());
-		 validateDescrption(product.getProductDescrption());
+		 validateDescription(product.getProductDescrption());
 		  validateId(product.getProductId());
 	}
 
@@ -39,7 +39,7 @@ public class ProductValidator {
 		validateProductName(product.getProductName()) ;
 		 validateProductImage(product.getProductImage());
 		 validateProductPrice(product.getProductPrice());
-		 validateDescrption(product.getProductDescrption());
+		 validateDescription(product.getProductDescrption());
 
 
 	}
@@ -85,15 +85,16 @@ public class ProductValidator {
 		}
 	}
 
-	public static boolean validateDescrption(String desc) throws InvalidProductException {
+	public static boolean validateDescription(String desc) throws InvalidProductException {
 		if (desc == null) {
 			throw new InvalidProductException("The Product description should not be null");
 		}
 		if (desc.trim().isEmpty()) {
 			throw new InvalidProductException("The Product description should not be empty");
-		} else {
+		} 
+		
 			return true;
-		}
+		
 	}
 
 	public static boolean validateProductPrice(int price) throws InvalidProductException {

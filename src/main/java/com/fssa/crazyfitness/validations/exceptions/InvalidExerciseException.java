@@ -1,16 +1,16 @@
 package com.fssa.crazyfitness.validations.exceptions;
 
-public class InvalidCartException extends Exception{
+public class InvalidExerciseException extends Exception{
       /**
 	 * 
 	 */
 	private static final long serialVersionUID = -157145714339807093L;
 
-	public InvalidCartException(String msg) {
+	public InvalidExerciseException(String msg) {
     	  super(msg);
       }
       
-      public InvalidCartException(Throwable e) {
+      public InvalidExerciseException(Throwable e) {
     	  super(e);
       }
 }

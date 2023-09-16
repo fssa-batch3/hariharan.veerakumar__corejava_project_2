@@ -9,28 +9,27 @@ import  com.fssa.crazyfitness.validations.ProductValidator;
 import com.fssa.crazyfitness.validations.exceptions.InvalidProductException;
 
  class TestProductId {
-@Test
- void testValidId() { 
-	try {
-		assertTrue(ProductValidator.validateId(1));
-	} catch (InvalidProductException e) {
+	 @Test
+	     void testValidId() throws InvalidProductException {
+	        // Valid product IDs (positive integers)
+	        assertTrue(ProductValidator.validateId(1));
+	        assertTrue(ProductValidator.validateId(100));
+	    }
 
-		e.printStackTrace();
-		fail();
-	}
-}
+	    @Test
+	     void testNegativeId() {
+	        // Negative product ID should throw an exception
+	        assertThrows(InvalidProductException.class, () -> {
+	            ProductValidator.validateId(-1);
+	        });
+	    }
 
-@Test
-void testInValidIdExpectException() { 
+	    @Test
+	     void testZeroId() {
+	        // Zero product ID should throw an exception
+	        assertThrows(InvalidProductException.class, () -> {
+	            ProductValidator.validateId(0);
+	        });
+	    }
 
-	try {
-		ProductValidator.validateId(0);
-		Throwable exception = assertThrows(InvalidProductException.class, () -> {
-			
-		});
-		assertEquals("The Product ID is not valid",exception.getMessage());
-	} catch (InvalidProductException e) {
-		e.printStackTrace();
-	}
-}
 }

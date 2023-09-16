@@ -86,8 +86,8 @@ public class UserValidator {
 			throw new InvalidUserException("Password should not be empty");
 		}
 
-		String patternstring = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@#$%^&+=])(?=.*[^\\s]).{8,}$";
-		boolean match = Pattern.matches(patternstring, password);
+	    String patternstring = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@#$%!^&+=])(?=.*[^\\s]).{8,}$";
+	    boolean match = Pattern.matches(patternstring, password);
 		if (match) {
 			return true;
 		} else {

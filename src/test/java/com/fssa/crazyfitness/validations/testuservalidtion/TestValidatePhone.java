@@ -8,49 +8,32 @@ import com.fssa.crazyfitness.validations.UserValidator;
 import com.fssa.crazyfitness.validations.exceptions.InvalidUserException;
 
  class TestValidatePhone {  
-	 Throwable exception;
+	 
   @Test
-   void testValidPhoneNumber() {
-	  try {
-		assertTrue(UserValidator.validatePhone("9842356365"));
-	} catch (InvalidUserException e) {
-		e.printStackTrace();
-		fail();
-	}
+   void testValidPhoneNumber() throws InvalidUserException {
+      // Valid phone numbers
+      assertTrue(UserValidator.validatePhone("7234567890"));
+      assertTrue(UserValidator.validatePhone("9876543210"));
   }
   @Test
    void testInValidPhoneNumber() {
-	 
-	  try {
-		  UserValidator.validatePhone("1234567890");
-		  exception = assertThrows(InvalidUserException.class , () -> {  
-		  });
-		  assertEquals("Invalid phone number",exception.getMessage());
-	} catch (InvalidUserException e) {
-		e.printStackTrace();
-	}
+      // Invalid phone numbers (contains non-numeric characters)
+      assertThrows(InvalidUserException.class, () -> {
+          UserValidator.validatePhone("1234a56789");
+      });
   }
   @Test
    void testInValidPhoneNumberLesserLength() {
-	
-	  try {
-		  UserValidator.validatePhone("12345");
-		  exception = assertThrows(InvalidUserException.class , () -> {  
-		  });
-		  assertEquals("Invalid phone number",exception.getMessage());
-	} catch (InvalidUserException e) {
-		e.printStackTrace();
-	}
+      // Invalid phone numbers (less than 10 digits)
+      assertThrows(InvalidUserException.class, () -> {
+          UserValidator.validatePhone("12345678");
+      });
   }
   @Test
    void testInValidPhoneNumberGreaterLength() {
-	  try {
-		  UserValidator.validatePhone("123456789098765");
-		  exception = assertThrows(InvalidUserException.class , () -> {  
-		  });
-		  assertEquals("Invalid phone number",exception.getMessage());
-	} catch (InvalidUserException e) {
-		e.printStackTrace();
-	}
-  }
+      // Invalid phone numbers (more than 10 digits)
+      assertThrows(InvalidUserException.class, () -> {
+          UserValidator.validatePhone("98765432101");
+      });
 }
+ }

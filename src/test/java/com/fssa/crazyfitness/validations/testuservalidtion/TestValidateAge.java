@@ -9,25 +9,25 @@ import com.fssa.crazyfitness.validations.exceptions.InvalidUserException;
 
  class TestValidateAge {
 @Test
- void testValidAge(){
-	try {
-		assertTrue(UserValidator.validateAge(19));
-	} catch (InvalidUserException e) {
-		e.printStackTrace();
-		fail();
-	}
+ void testValidAge() throws InvalidUserException{
+	 // Valid age range (between 12 and 99)
+    assertTrue(UserValidator.validateAge(20));
 	}
  
 @Test
- void testExpectInvalidUserException(){
-	try{
-		UserValidator.validateAge(-19);
-	Throwable exception = assertThrows(InvalidUserException.class, () -> {
-	});
-	assertEquals("Invalid Age",exception.getMessage());
-	} catch(InvalidUserException e) {
-		e.printStackTrace();
-	}
+ void testInvalidAgeLessThanTwelve(){
+    // Invalid age (less than 12)
+    assertThrows(InvalidUserException.class, () -> {
+        UserValidator.validateAge(10);
+    });
+}
+
+@Test
+void testInvalidAgeGreaterThanNintynine() {
+    // Invalid age (greater than or equal to 100)
+    assertThrows(InvalidUserException.class, () -> {
+        UserValidator.validateAge(100);
+    });
 }
 
 }

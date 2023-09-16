@@ -8,29 +8,28 @@ import com.fssa.crazyfitness.validations.ProductValidator;
 import com.fssa.crazyfitness.validations.exceptions.InvalidProductException;
 
  class TestProductPrice {
-	@Test 
-	 void testValidPrice() {
-		try {
-			assertTrue(ProductValidator.validateProductPrice(999));
-		} catch (InvalidProductException e) {
-			e.printStackTrace();
-			fail();
-		}
-	}
-	
-	@Test
-	 void testInvalidPriceExpectException() {
+	 @Test
+	     void testValidProductPrice() throws InvalidProductException {
+	        // Valid product prices (positive integers)
+	        assertTrue(ProductValidator.validateProductPrice(1000));
+	        assertTrue(ProductValidator.validateProductPrice(2000));
+	    }
 
-		try {
-			ProductValidator.validateProductPrice(-999);
-			Throwable exception = assertThrows(InvalidProductException.class, () -> {
-			});
-			assertEquals("The Product price is not valid", exception.getMessage());
-		} catch (InvalidProductException e) {
-			e.printStackTrace();
-		}
-	}
-	
+	    @Test
+	     void testNegativeProductPrice() {
+	        // Negative product price should throw an exception
+	        assertThrows(InvalidProductException.class, () -> {
+	            ProductValidator.validateProductPrice(-1);
+	        });
+	    }
+
+	    @Test
+	     void testZeroProductPrice() {
+	        // Zero product price should throw an exception
+	        assertThrows(InvalidProductException.class, () -> {
+	            ProductValidator.validateProductPrice(0);
+	        });
+	    }
 	
 
 }

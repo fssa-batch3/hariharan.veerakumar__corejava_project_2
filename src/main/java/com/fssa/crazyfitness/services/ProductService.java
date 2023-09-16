@@ -49,8 +49,9 @@ public class ProductService {
  */
 	public Product getProductById(int id)throws ServiceException{	
 		try {
+			ProductValidator.validateId(id);
 			  return ProductDAO.getProductById(id);
-		} catch (DAOException e) {
+		} catch (DAOException | InvalidProductException e) {
 			throw new ServiceException(e);
 		}
 	}
