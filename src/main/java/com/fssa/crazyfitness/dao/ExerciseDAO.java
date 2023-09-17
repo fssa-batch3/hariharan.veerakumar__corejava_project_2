@@ -75,14 +75,15 @@ public class ExerciseDAO {
 	 * @throws DAOException If a database access error occurs.
 	 */
 	public boolean updateExercise(Exercise exercise) throws DAOException {
-		final String updateQuery = "UPDATE exercise SET exercise_name=?,exercise_image=?,exercise_timing=?,exercise_steps=?,exercise_category=? WHERE  exercise_id = ?";
+		final String updateQuery = "UPDATE exercise SET exercise_name=?,exercise_image=?,exercise_timing=?,exercise_steps=?,exercise_category=? WHERE exercise_id = ?";
 		try (Connection connect = ConnectionDb.getConnection();
 				PreparedStatement updatePst = connect.prepareStatement(updateQuery);) {
-			updatePst.setString(1, exercise.getExerciseImage());
-			updatePst.setInt(2, exercise.getExerciseTiming());
-			updatePst.setString(3, exercise.getExerciseSteps());
-			updatePst.setString(4, exercise.getExerciseCategory());
-			updatePst.setInt(5, exercise.getExerciseId());
+			updatePst.setString(1, exercise.getExerciseName());
+			updatePst.setString(2, exercise.getExerciseImage());
+			updatePst.setInt(3, exercise.getExerciseTiming());
+			updatePst.setString(4, exercise.getExerciseSteps());
+			updatePst.setString(5, exercise.getExerciseCategory());
+			updatePst.setInt(6, exercise.getExerciseId());
 			int rows = updatePst.executeUpdate();
 			return (rows == 1);
 		} catch (SQLException | DatabaseException e) {

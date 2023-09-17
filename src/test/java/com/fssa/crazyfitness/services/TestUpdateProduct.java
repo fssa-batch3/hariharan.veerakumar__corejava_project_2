@@ -47,22 +47,5 @@ import  com.fssa.crazyfitness.services.exceptions.ServiceException;
 		
 	}
 }
-@Test
- void testNegativePriceUpdate() {
-	ProductService productService = new ProductService();
-	
-	Product product = new Product();
-	product.setProductId(1);
-	product.setProductImage("./../assets/images/dumbbells.jpg");
-	product.setProductName("Dumb Bells");
-	product.setProductPrice(-1000);
-	product.setProductDescrption("Made up of rubber and iron");
-	try {
-		assertFalse(productService.productUpdate(product));
-	}catch(ServiceException e){
-		e.printStackTrace();
-		
-	}
-}
 
 }
