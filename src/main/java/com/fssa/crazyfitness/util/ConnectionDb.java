@@ -15,7 +15,6 @@ public class ConnectionDb {
 		url = System.getenv("DB_URL");
 		user = System.getenv("DB_USER");
 		password = System.getenv("DB_PASSWORD");
-
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			connect = DriverManager.getConnection(url, user, password);
