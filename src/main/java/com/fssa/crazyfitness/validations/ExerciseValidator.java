@@ -100,7 +100,7 @@ public class ExerciseValidator {
 	 * @throws InvalidExerciseException
 	 */
 	public static boolean validateExerciseTiming(int timing) throws InvalidExerciseException{
-		if (timing <= 4)
+		if (timing <= 4 && timing > 30 )
 			throw new InvalidExerciseException("The timing of the exercise should not be less than 5 seconds");
 		else
 			return true;
