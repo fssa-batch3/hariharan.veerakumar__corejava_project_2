@@ -17,7 +17,7 @@ class TestCreateUserExercise {
 	void testCreateValidUserExercise() {
 		UserExerciseService userExerciseService = new UserExerciseService();
 		UserExerciseStatus status = UserExerciseStatus.PLANNED;
-		LocalDate today = LocalDate.now();
+		LocalDate today = LocalDate.now(); 
 		UserExercise userExercise = new UserExercise(1, 2, today, status);
 		try {
 			assertTrue(userExerciseService.createUserExercise(userExercise));
