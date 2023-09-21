@@ -29,10 +29,8 @@ public class UserExerciseValidator {
 		if(userExercise == null)
 			throw new InvalidUserExerciseException("User exercise should not be null");
 		validateId(userExercise.getUserExerciseId());
-		validateId(userExercise.getUserId());
-		validateId(userExercise.getExerciseId());
 		validateStatus(userExercise.getStatus());
-		validateLocalDate(userExercise.getExerciseDate());
+
 	}
 	
 	/**
@@ -42,7 +40,7 @@ public class UserExerciseValidator {
 	 * @throws InvalidUserExerciseException
 	 */
 public static boolean validateId(int id) throws InvalidUserExerciseException {
-	if(id > 0)
+	if( 0 < id)
 		return true;
 	else
 		throw new InvalidUserExerciseException("The ID should not be in negative values and must not contain alphabetic characters also should not be 0");

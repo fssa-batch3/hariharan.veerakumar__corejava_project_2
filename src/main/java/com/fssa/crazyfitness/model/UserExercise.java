@@ -12,11 +12,8 @@ public class UserExercise {
     public UserExercise() {
     }
 
-    public UserExercise(int userExerciseId, int userId, int exerciseId, LocalDate exerciseDate, UserExerciseStatus status) {
+    public UserExercise(int userExerciseId, UserExerciseStatus status) {
         this.userExerciseId = userExerciseId;
-        this.userId = userId;
-        this.exerciseId = exerciseId;
-        this.exerciseDate = exerciseDate;
         this.status = status;
     }
 

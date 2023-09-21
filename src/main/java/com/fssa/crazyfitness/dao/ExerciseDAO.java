@@ -108,7 +108,7 @@ public class ExerciseDAO {
 			throw new DAOException(e);
 		}
 	}
-/***
+/**
  * 
  * @param id The ID of the exercise to be retrieved.
  * @return An Exercise object representing the retrieved exercise, or null if not found.
