@@ -22,7 +22,7 @@ class TestUpdateUserExercise {
 		try {
 			assertTrue(userExerciseService.updateUserExercise(userExercise));
 		} catch (ServiceException e) {
-			e.printStackTrace();
+			e.printStackTrace(); 
 			fail();
 		}
 	}

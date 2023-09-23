@@ -11,7 +11,7 @@ import com.fssa.crazyfitness.validations.exceptions.InvalidUserExerciseException
 
 public class UserExerciseService {
 	/**
-	 * 
+	 *  
 	 * Creates a new user exercise by delegating the operation to the
 	 * UserExerciseDAO.
 	 *
@@ -56,7 +56,7 @@ public class UserExerciseService {
 	 * @throws ServiceException If there is an issue with the service operation,
 	 *                          including validation or DAO-related errors.
 	 */
-	public UserExercise getUserExerciseByUserId(int id) throws ServiceException {
+	public List<UserExercise> getUserExerciseByUserId(int id) throws ServiceException {
 
 		try {
 			UserExerciseValidator.validateId(id);

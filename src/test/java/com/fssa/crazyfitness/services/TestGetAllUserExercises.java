@@ -24,7 +24,7 @@ class TestGetAllUserExercises {
 		} catch (ServiceException e) {
 			e.printStackTrace();
 			fail();
-		}
+		} 
 
 	}
 }
