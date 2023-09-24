@@ -67,13 +67,13 @@ public class ExerciseValidator {
 			throw new InvalidExerciseException("The Exerice name should not be null");
 		if(name.trim().isEmpty())
 			throw new InvalidExerciseException("The Exercise name should not be empty");
-		String regex = "^[A-Za-z-\\s]{3,20}$";
+		String regex = "^[A-Za-z-'\\s]{3,35}$";
 	    Pattern p = Pattern.compile(regex);
 	    Matcher m = p.matcher(name);
 	    if(m.matches())
 	    	return true;
 	    else
-	    	throw new InvalidExerciseException("The exercise name should not contain numeric values also minimum 3 characters is required and maximum 20");
+	    	throw new InvalidExerciseException("The exercise name should not contain numeric values also minimum 3 characters is required and maximum 35");
 	}
 	
 /**

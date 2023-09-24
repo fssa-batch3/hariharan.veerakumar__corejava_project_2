@@ -16,13 +16,14 @@ class TestUpdateUserExercise {
 		UserExerciseService userExerciseService = new UserExerciseService();
 		UserExercise userExercise = new UserExercise();
 		UserExerciseStatus status = UserExerciseStatus.COMPLETED;
-		userExercise.setUserExerciseId(2);
+		userExercise.setUserExerciseId(4);
 		userExercise.setStatus(status);
 
 		try {
 			assertTrue(userExerciseService.updateUserExercise(userExercise));
 		} catch (ServiceException e) {
 			e.printStackTrace(); 
+			System.out.println(e.getMessage());
 			fail();
 		}
 	}

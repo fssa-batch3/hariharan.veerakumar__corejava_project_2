@@ -16,7 +16,7 @@ void testGetUserUserExerciseByUserId() {
 	UserExerciseService userExerciseService = new UserExerciseService();
 	List<UserExercise> userExercise = new ArrayList<>();
 	try {
-		userExercise = userExerciseService.getUserExerciseByUserId(1);
+		userExercise = userExerciseService.getUserExercisesListByUserId(1);
 		for(int i =0; i < userExercise.size();i++) {
 			System.out.println(((UserExercise) userExercise).getUserExerciseId() + " - " + ((UserExercise) userExercise).getUserId() + " - "
 					+ ((UserExercise) userExercise).getExerciseId() + " - " + ((UserExercise) userExercise).getExerciseDate() + " - "

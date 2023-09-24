@@ -42,7 +42,7 @@ public class UserExerciseDAO {
 	}
 
 	/**
-	 *  
+	 * 
 	 * Retrieves a list of all user exercise records from the database.
 	 *
 	 * @return A list containing UserExercise objects representing all user
@@ -80,6 +80,42 @@ public class UserExerciseDAO {
 		}
 		return userExerciseList;
 	}
+/**
+ * 
+ * @param id
+ * @return
+ * @throws DAOException
+ */
+	public static UserExercise getExerciseByUserId(int id) throws DAOException {
+		final String selectQuery = "SELECT * FROM user_exercise WHERE user_id=?";
+		try (Connection connect = ConnectionDb.getConnection();
+				PreparedStatement selectPst = connect.prepareStatement(selectQuery);) {
+			selectPst.setInt(1, id);
+			try (ResultSet rs = selectPst.executeQuery()) {
+				if (rs.next()) {
+					UserExercise userExercise = new UserExercise();
+					java.sql.Date date = rs.getDate("exercise_date");
+					String exerciseStatus = rs.getString("status");
+
+					LocalDate exerciseDate = date.toLocalDate();
+					UserExerciseStatus status = UserExerciseStatus.valueOf(exerciseStatus);
+
+					userExercise.setUserExerciseId(rs.getInt("user_exercise_id"));
+					userExercise.setUserId(rs.getInt("user_id"));
+					userExercise.setExerciseId(rs.getInt("exercise_id"));
+					userExercise.setExerciseDate(exerciseDate);
+					userExercise.setStatus(status);
+					return userExercise;
+				} else {
+					rs.close();
+
+				}
+			}
+		} catch (SQLException | DatabaseException e) {
+			throw new DAOException(e);
+		}
+		return null;
+	}
 
 	/**
 	 * 
@@ -88,36 +124,36 @@ public class UserExerciseDAO {
 	 *         null if not found.
 	 * @throws DAOException If a database access error occurs.
 	 */
-	public static List<UserExercise> getUserExerciseByUserId(int id) throws DAOException {
-	    final String selectQuery = "SELECT * FROM user_exercise WHERE user_id=?";
-	    List<UserExercise> userExercises = new ArrayList<>();
-	    
-	    try (Connection connect = ConnectionDb.getConnection();
-	         PreparedStatement selectPst = connect.prepareStatement(selectQuery);) {
-	        selectPst.setInt(1, id);
-	        try (ResultSet rs = selectPst.executeQuery()) {
-	            while (rs.next()) {
-	                UserExercise userExercise = new UserExercise();
-	                java.sql.Date date = rs.getDate("exercise_date");
-	                String exerciseStatus = rs.getString("status");
+	public static List<UserExercise> getUserExercisesListByUserId(int id) throws DAOException {
+		final String selectQuery = "SELECT * FROM user_exercise WHERE user_id=?";
+		List<UserExercise> userExercises = new ArrayList<>();
 
-	                LocalDate exerciseDate = date.toLocalDate();
-	                UserExerciseStatus status = UserExerciseStatus.valueOf(exerciseStatus);
+		try (Connection connect = ConnectionDb.getConnection();
+				PreparedStatement selectPst = connect.prepareStatement(selectQuery);) {
+			selectPst.setInt(1, id);
+			try (ResultSet rs = selectPst.executeQuery()) {
+				while (rs.next()) {
+					UserExercise userExercise = new UserExercise();
+					java.sql.Date date = rs.getDate("exercise_date");
+					String exerciseStatus = rs.getString("status");
 
-	                userExercise.setUserExerciseId(rs.getInt("user_exercise_id"));
-	                userExercise.setUserId(rs.getInt("user_id"));
-	                userExercise.setExerciseId(rs.getInt("exercise_id"));
-	                userExercise.setExerciseDate(exerciseDate);
-	                userExercise.setStatus(status);
-	                
-	                userExercises.add(userExercise);
-	            }
-	        }
-	    } catch (SQLException | DatabaseException e) {
-	        throw new DAOException(e);
-	    }
-	    
-	    return userExercises;
+					LocalDate exerciseDate = date.toLocalDate();
+					UserExerciseStatus status = UserExerciseStatus.valueOf(exerciseStatus);
+
+					userExercise.setUserExerciseId(rs.getInt("user_exercise_id"));
+					userExercise.setUserId(rs.getInt("user_id"));
+					userExercise.setExerciseId(rs.getInt("exercise_id"));
+					userExercise.setExerciseDate(exerciseDate);
+					userExercise.setStatus(status);
+
+					userExercises.add(userExercise);
+				}
+			}
+		} catch (SQLException | DatabaseException e) {
+			throw new DAOException(e);
+		}
+
+		return userExercises;
 	}
 
 	/**
@@ -145,11 +181,14 @@ public class UserExerciseDAO {
 	}
 
 	/**
- * Deletes a user exercise record from the database based on the given user exercise ID.
- *
- * @param id The ID of the user exercise record to delete.
- * @return True if the user exercise record was successfully deleted, false otherwise.
- * @throws DAOException If there is an issue with the database connection or query execution.
+	 * Deletes a user exercise record from the database based on the given user
+	 * exercise ID.
+	 *
+	 * @param id The ID of the user exercise record to delete.
+	 * @return True if the user exercise record was successfully deleted, false
+	 *         otherwise.
+	 * @throws DAOException If there is an issue with the database connection or
+	 *                      query execution.
 	 */
 	public boolean deleteUserExercise(int id) throws DAOException {
 		final String deleteQuery = "DELETE FROM user_exercise WHERE user_exercise_id=?";

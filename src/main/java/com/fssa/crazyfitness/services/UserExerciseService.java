@@ -56,12 +56,27 @@ public class UserExerciseService {
 	 * @throws ServiceException If there is an issue with the service operation,
 	 *                          including validation or DAO-related errors.
 	 */
-	public List<UserExercise> getUserExerciseByUserId(int id) throws ServiceException {
+	public List<UserExercise> getUserExercisesListByUserId(int id) throws ServiceException {
 
 		try {
 			UserExerciseValidator.validateId(id);
-			return UserExerciseDAO.getUserExerciseByUserId(id);
+			return UserExerciseDAO.getUserExercisesListByUserId(id);
 		} catch (DAOException | InvalidUserExerciseException e) {
+			throw new ServiceException(e);
+		}
+	}
+	
+	/**
+	 * 
+	 * @param id
+	 * @return
+	 * @throws ServiceException
+	 */
+	public UserExercise getUserExerciseById(int id) throws ServiceException {
+		try {
+			UserExerciseValidator.validateId(id);
+			return UserExerciseDAO.getExerciseByUserId(id);
+		} catch (InvalidUserExerciseException | DAOException e) {
 			throw new ServiceException(e);
 		}
 	}

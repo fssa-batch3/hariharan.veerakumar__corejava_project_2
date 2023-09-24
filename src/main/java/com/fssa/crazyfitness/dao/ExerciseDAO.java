@@ -15,25 +15,6 @@ import com.fssa.crazyfitness.util.DatabaseException;
 
 public class ExerciseDAO {
 
-	public boolean exerciseNameCheck(String name) throws DAOException, SQLException {
-		final String selectQuery = "SELECT exercise_name FROM exercise WHERE exercise_name=?";
-		ResultSet rs = null;
-		try (Connection connect = ConnectionDb.getConnection();
-				PreparedStatement selectPst = connect.prepareStatement(selectQuery)) {
-			selectPst.setString(1, name);
-			rs = selectPst.executeQuery();
-
-			// Email already exists, do not proceed with registration
-			return rs.next();
-
-		} catch (DatabaseException e) {
-			throw new DAOException(e);
-		} finally {
-			if (rs != null) {
-				rs.close();
-			}
-		}
-	}
 
 	/**
 	 * 
@@ -46,7 +27,7 @@ public class ExerciseDAO {
 		final String insertQuery = "INSERT INTO exercise (exercise_name, exercise_image, exercise_timing, exercise_steps, exercise_category) VALUES (?, ?, ?, ?, ?)";
 		try (Connection connect = ConnectionDb.getConnection();
 				PreparedStatement insertPst = connect.prepareStatement(insertQuery);) {
-			if (!exerciseNameCheck(exercise.getExerciseName())) {
+		
 
 				insertPst.setString(1, exercise.getExerciseName());
 				insertPst.setString(2, exercise.getExerciseImage());
@@ -55,9 +36,7 @@ public class ExerciseDAO {
 				insertPst.setString(5, exercise.getExerciseCategory());
 				int rows = insertPst.executeUpdate();
 				return (rows == 1);
-			} else {
-				throw new DAOException("Entered Exercise already existed, please add various exercise");
-			}
+	
 
 		} catch (SQLException | DatabaseException e) {
 			throw new DAOException(e);
