@@ -12,7 +12,7 @@ public class User {
 	private String password;
 	private String phone; 
 	private String address;
-	 
+	private String gender; 
 	
 	
 	
@@ -90,7 +90,15 @@ public class User {
 		this.password = password;
 		this.phone = phone;
 	}
+	public User(String fname, String lname, int age, String email, String password) {
+		super();
+		this.fname = fname;
+		this.lname = lname;
+		this.age = age;
+		this.email = email;
+		this.password = password;
 	
+	}
 	public int getUserId() {
 		return userId;
 	}
@@ -140,6 +148,14 @@ public class User {
 	}
 	public void setAddress(String address) {
 		this.address = address;
+	}
+
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
 	}
 	
 	

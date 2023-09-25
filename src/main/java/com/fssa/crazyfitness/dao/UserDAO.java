@@ -80,7 +80,7 @@ public class UserDAO {
 				insertPst.setInt(3, user.getAge());
 				insertPst.setString(4, user.getEmail());
 				insertPst.setString(5, user.getPassword());
-				insertPst.setString(6, user.getPhone());
+			    insertPst.setString(6, user.getPhone());
 
 
 				int rows = insertPst.executeUpdate();
@@ -174,16 +174,14 @@ public class UserDAO {
 	 * @throws DAOException
 	 */
 	public boolean update(User user) throws DAOException {
-		final String updateQuery = "UPDATE user SET first_name= ?, last_name = ?,age = ?,password = ?,phone=?,address = ? WHERE email = ?";
+		final String updateQuery = "UPDATE user SET first_name= ?, last_name = ?,age = ?,phone=? WHERE email = ?";
 		try (Connection connect = ConnectionDb.getConnection();
 				PreparedStatement pst = connect.prepareStatement(updateQuery)) {
 			pst.setString(1, user.getFname());
 			pst.setString(2, user.getLname());
 			pst.setInt(3, user.getAge());
-			pst.setString(4, user.getPassword());
-			pst.setString(5, user.getPhone());
-			pst.setString(6, user.getAddress());
-			pst.setString(7, user.getEmail());
+			pst.setString(4, user.getPhone());
+			pst.setString(5, user.getEmail());
 
 			int rows = pst.executeUpdate();
 			return (rows == 1);
