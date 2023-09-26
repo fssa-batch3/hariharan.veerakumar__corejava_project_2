@@ -1,5 +1,7 @@
 package com.fssa.crazyfitness.services;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.fssa.crazyfitness.dao.UserExerciseDAO;
@@ -11,7 +13,7 @@ import com.fssa.crazyfitness.validations.exceptions.InvalidUserExerciseException
 
 public class UserExerciseService {
 	/**
-	 *  
+	 * 
 	 * Creates a new user exercise by delegating the operation to the
 	 * UserExerciseDAO.
 	 *
@@ -65,7 +67,7 @@ public class UserExerciseService {
 			throw new ServiceException(e);
 		}
 	}
-	
+
 	/**
 	 * 
 	 * @param id
@@ -103,12 +105,14 @@ public class UserExerciseService {
 	}
 
 	/**
-/**
- * Deletes a user exercise record from the database by delegating the operation to the UserExerciseDAO.
- *
- * @param id The ID of the user exercise record to delete.
- * @return True if the user exercise record was successfully deleted, false otherwise.
- * @throws ServiceException If there is an issue with data validation, a DAO operation error, or a database connection error.
+	 * /** Deletes a user exercise record from the database by delegating the
+	 * operation to the UserExerciseDAO.
+	 *
+	 * @param id The ID of the user exercise record to delete.
+	 * @return True if the user exercise record was successfully deleted, false
+	 *         otherwise.
+	 * @throws ServiceException If there is an issue with data validation, a DAO
+	 *                          operation error, or a database connection error.
 	 */
 	public boolean deleteUserExercise(int id) throws ServiceException {
 		UserExerciseDAO userExerciseDAO = new UserExerciseDAO();
@@ -120,4 +124,59 @@ public class UserExerciseService {
 			throw new ServiceException(e);
 		}
 	}
+
+	/**
+	 * Retrieves a list of UserExercise objects that are scheduled for today. This
+	 * method compares the exercise date of each UserExercise with the current date.
+	 *
+	 * @return A list of UserExercise objects scheduled for today.
+	 * @throws ServiceException If there's an error while retrieving exercises or
+	 *                          handling exceptions.
+	 */
+	public static List<UserExercise> getTodayExercises() throws ServiceException {
+		LocalDate today = LocalDate.now();
+		List<UserExercise> exercises = null;
+		List<UserExercise> todayExercise = new ArrayList<>();
+		try {
+			exercises = UserExerciseDAO.getAllUserExercises();
+			for (UserExercise exercise : exercises) {
+				LocalDate exerciseDate = exercise.getExerciseDate();
+
+				if (exerciseDate.isEqual(today)) {
+					todayExercise.add(exercise);
+				}
+			}
+			return todayExercise;
+		} catch (DAOException e) {
+			throw new ServiceException(e);
+		}
+	}
+
+	/**
+	 * Retrieves a list of UserExercise objects that are scheduled for dates prior
+	 * to today. This method compares the exercise date of each UserExercise with
+	 * the current date.
+	 *
+	 * @return A list of UserExercise objects scheduled for dates prior to today.
+	 * @throws ServiceException If there's an error while retrieving exercises or
+	 *                          handling exceptions.
+	 */
+	public static List<UserExercise> getPreviousExercises() throws ServiceException {
+		LocalDate today = LocalDate.now();
+		List<UserExercise> exercises = null;
+		List<UserExercise> previousExercises = new ArrayList<>();
+		try {
+			exercises = UserExerciseDAO.getAllUserExercises();
+			for (UserExercise exercise : exercises) {
+				LocalDate exerciseDate = exercise.getExerciseDate();
+				if (!exerciseDate.isEqual(today)) {
+					previousExercises.add(exercise);
+				}
+			}
+			return previousExercises;
+		} catch (DAOException e) {
+			throw new ServiceException(e);
+		}
+	}
+
 }

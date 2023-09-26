@@ -25,9 +25,9 @@ class TestCreateUserExercise {
 			e.printStackTrace();
 			fail();
 		}
-	}
+	} 
 
-	@Test
+	@Test 
 	void testCreateInvalidNullUserExercise() {
 		UserExerciseService userExerciseService = new UserExerciseService();
 		UserExercise userExercise = null;

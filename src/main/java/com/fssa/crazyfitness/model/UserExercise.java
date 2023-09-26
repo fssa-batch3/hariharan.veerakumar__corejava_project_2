@@ -37,7 +37,7 @@ public class UserExercise {
     }
 
     public void setUserId(int userId) {
-        this.userId = userId;
+        this.userId = userId; 
     }
 
     public int getExerciseId() {

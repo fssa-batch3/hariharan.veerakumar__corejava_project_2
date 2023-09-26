@@ -164,10 +164,10 @@ public class UserValidator {
 	}
 
 	public static boolean validateAge(int age) throws InvalidUserException {
-		if (age >= 12 && age < 100) {
+		if (age >= 12 && age <= 64) {
 			return true;
 		} else {
-			throw new InvalidUserException("Age must between 12 to 99");
+			throw new InvalidUserException("Age must between 12 to 64");
 		}
 
 	}

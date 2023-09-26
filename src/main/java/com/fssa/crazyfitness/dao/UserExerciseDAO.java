@@ -39,7 +39,7 @@ public class UserExerciseDAO {
 		} catch (SQLException | DatabaseException e) {
 			throw new DAOException(e);
 		}
-	}
+	} 
 
 	/**
 	 * 
@@ -131,7 +131,7 @@ public class UserExerciseDAO {
 		try (Connection connect = ConnectionDb.getConnection();
 				PreparedStatement selectPst = connect.prepareStatement(selectQuery);) {
 			selectPst.setInt(1, id);
-			try (ResultSet rs = selectPst.executeQuery()) {
+			try (ResultSet rs = selectPst.executeQuery()) { 
 				while (rs.next()) {
 					UserExercise userExercise = new UserExercise();
 					java.sql.Date date = rs.getDate("exercise_date");

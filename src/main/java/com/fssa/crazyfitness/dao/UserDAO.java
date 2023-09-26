@@ -23,16 +23,18 @@ public class UserDAO {
 	private static final String COLUMN_PASSWORD = "password";
 	private static final String COLUMN_PHONE = "phone";
 	private static final String COLUMN_ADDRESS = "address";
+	private static final String COLUMN_GENDER = "gender";
 
 	private static User mapResultSetToUser(ResultSet rs) throws SQLException {
 		User user = new User();
 		user.setUserId(rs.getInt(COLUMN_USER_ID));
 		user.setEmail(rs.getString(COLUMN_EMAIL ));
-		user.setFname(rs.getString(COLUMN_FNAME));
+		user.setFname(rs.getString(COLUMN_FNAME)); 
 		user.setLname(rs.getString(COLUMN_LNAME));
 		user.setAge(rs.getInt(COLUMN_AGE));
 		user.setPassword(rs.getString(COLUMN_PASSWORD));
 		user.setPhone(rs.getString(COLUMN_PHONE));
+		user.setGender(rs.getString(COLUMN_GENDER));
 		user.setAddress(rs.getString(COLUMN_ADDRESS));
 		return user;
 	}
