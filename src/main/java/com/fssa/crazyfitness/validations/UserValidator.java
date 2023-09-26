@@ -20,16 +20,30 @@ public class UserValidator {
 		if (user == null) {
 			throw new InvalidUserException("User details should not be NULL");
 		}
-
+ 
 		validateName(user.getFname());
 		validateName(user.getLname());
 		validateEmail(user.getEmail());
 		validatePassword(user.getPassword());
 		validatePhone(user.getPhone());
 		validateAge(user.getAge());
+		
 
 	}
 
+	public static void validateEditUser(User user) throws InvalidUserException {
+		if (user == null) {
+			throw new InvalidUserException("User details should not be NULL");
+		}
+ 
+		validateName(user.getFname());
+		validateName(user.getLname());
+		validateEmail(user.getEmail());
+		validatePhone(user.getPhone());
+		validateAge(user.getAge());
+		validateGender(user.getGender());
+
+	}
 
 //	login user 
 	public static boolean validateLogin(String email, String providedPassword) throws InvalidUserException {
@@ -78,6 +92,22 @@ public class UserValidator {
 
 	}
 
+	public static boolean validateGender(String gender) throws InvalidUserException {
+	if(gender == null)
+		throw new InvalidUserException("Gender should not be null");
+	if(gender.trim().isEmpty())
+		throw new InvalidUserException("Gender should not be empty");
+	
+	if(gender.equals("male") || gender.equals("female") || gender.equals("others")) {
+		return true;
+	}
+	else {
+		throw new InvalidUserException("Invalid type of gender");
+	}
+	}	
+	
+	
+	
 	public static boolean validatePassword(String password) throws InvalidUserException {
 
 		if (password == null)

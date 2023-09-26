@@ -174,14 +174,15 @@ public class UserDAO {
 	 * @throws DAOException
 	 */
 	public boolean update(User user) throws DAOException {
-		final String updateQuery = "UPDATE user SET first_name= ?, last_name = ?,age = ?,phone=? WHERE email = ?";
+		final String updateQuery = "UPDATE user SET first_name= ?, last_name = ?,age = ?,phone=?,gender=? WHERE email = ?";
 		try (Connection connect = ConnectionDb.getConnection();
 				PreparedStatement pst = connect.prepareStatement(updateQuery)) {
 			pst.setString(1, user.getFname());
 			pst.setString(2, user.getLname());
-			pst.setInt(3, user.getAge());
+			pst.setInt(3, user.getAge()); 
 			pst.setString(4, user.getPhone());
-			pst.setString(5, user.getEmail());
+			pst.setString(5, user.getGender());
+			pst.setString(6, user.getEmail());
 
 			int rows = pst.executeUpdate();
 			return (rows == 1);

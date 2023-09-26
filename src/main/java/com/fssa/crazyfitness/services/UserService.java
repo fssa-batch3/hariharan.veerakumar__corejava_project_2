@@ -64,13 +64,13 @@ public class UserService {
 	public boolean userUpdate(User user) throws ServiceException {
 		UserDAO userDAO = new UserDAO();
 		try {
-			UserValidator.validateUser(user);
+			UserValidator.validateEditUser(user);
 			return userDAO.update(user);
 		} catch (DAOException | InvalidUserException e) {
 			throw new ServiceException(e);
 		}
 	}
-
+ 
 	/**
 	 * 
 	 * @param id
