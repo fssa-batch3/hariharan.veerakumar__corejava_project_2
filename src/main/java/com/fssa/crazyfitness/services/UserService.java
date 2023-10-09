@@ -1,16 +1,19 @@
 package com.fssa.crazyfitness.services;
 
-import com.fssa.crazyfitness.model.User;
-import com.fssa.crazyfitness.services.exceptions.ServiceException;
-import com.fssa.crazyfitness.validations.UserValidator;
-import com.fssa.crazyfitness.validations.exceptions.InvalidUserException;
 
 import java.util.List;
 
 import com.fssa.crazyfitness.dao.UserDAO;
 import com.fssa.crazyfitness.dao.exceptions.DAOException;
+import com.fssa.crazyfitness.model.User;
+import com.fssa.crazyfitness.security.SecurityUtils;
+import com.fssa.crazyfitness.services.exceptions.ServiceException;
+import com.fssa.crazyfitness.validations.UserValidator;
+import com.fssa.crazyfitness.validations.exceptions.InvalidUserException;
 
 public class UserService {
+
+
 	// register
 	/**
 	 * @param user
@@ -21,8 +24,9 @@ public class UserService {
 		UserDAO userDAO = new UserDAO();
 		try {
 			UserValidator.validateUser(user);
+			String registerPassword = SecurityUtils.hashPassword(user.getPassword());
+			user.setPassword(registerPassword);
 			return userDAO.register(user);
-
 		} catch (DAOException | InvalidUserException e) {
 			throw new ServiceException(e);
 		}
@@ -37,7 +41,9 @@ public class UserService {
 	 */
 	public boolean login(String email, String providedPassword) throws ServiceException {
 		try {
-			return UserValidator.validateLogin(email, providedPassword);
+			UserValidator.validateEmail(email);
+			String loginPassword = SecurityUtils.hashPassword(providedPassword);
+			return UserValidator.validateLogin(email, loginPassword);
 		} catch (InvalidUserException e) {
 			throw new ServiceException(e);
 		}
@@ -70,7 +76,7 @@ public class UserService {
 			throw new ServiceException(e);
 		}
 	}
- 
+
 	/**
 	 * 
 	 * @param id
@@ -105,12 +111,13 @@ public class UserService {
 		}
 
 	}
-/**
- * 
- * @param id
- * @return
- * @throws ServiceException
- */
+
+	/**
+	 * 
+	 * @param id
+	 * @return
+	 * @throws ServiceException
+	 */
 	public User getUserbyId(int id) throws ServiceException {
 		UserDAO userDAO = new UserDAO();
 		User user = new User();

@@ -48,13 +48,11 @@ public class UserValidator {
 //	login user 
 	public static boolean validateLogin(String email, String providedPassword) throws InvalidUserException {
 		UserDAO userDAO = new UserDAO();
-		try {
-			validateEmail(email);
+		try {		
 				User storedUser = userDAO.getUserByEmail(email);
 				if (storedUser != null) {
 					String storedPassword = storedUser.getPassword();
 					if (storedPassword.equals(providedPassword)) {
-
 						return true;
 					} else {
 
@@ -63,7 +61,6 @@ public class UserValidator {
 				} else {
 					throw new InvalidUserException("User not found");
 				}
-			
 		} catch (DAOException e) {
 			throw new InvalidUserException("Login details are not valid");
 		}
