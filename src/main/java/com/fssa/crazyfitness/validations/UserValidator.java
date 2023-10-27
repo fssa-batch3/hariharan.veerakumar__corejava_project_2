@@ -56,10 +56,10 @@ public class UserValidator {
 						return true;
 					} else {
 
-						throw new InvalidUserException("Wrong password, please correct it");
+						throw new InvalidUserException("Invalid Credentials");
 					}
 				} else {
-					throw new InvalidUserException("User not found");
+					throw new InvalidUserException("Invalid Credentials");
 				}
 		} catch (DAOException e) {
 			throw new InvalidUserException("Login details are not valid");
