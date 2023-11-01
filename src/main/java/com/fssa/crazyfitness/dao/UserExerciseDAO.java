@@ -16,6 +16,12 @@ import com.fssa.crazyfitness.util.ConnectionDb;
 import com.fssa.crazyfitness.util.DatabaseException;
 
 public class UserExerciseDAO {
+    
+	private static String COLUMN_USEREXERCISE_ID = "user_exercise_id";
+    private static String COLUMN_USER_ID  = "user_id";
+    private static String COLUMN_EXERCISE_ID = "exercise_id";
+    private static String COLUMN_EXERCISE_DATE = "exercise_date";
+    private static String COLUMN_STATUS = "status";
 	/**
 	 * 
 	 * @param userExercise The UserExercise object containing the data to be
@@ -57,11 +63,11 @@ public class UserExerciseDAO {
 				Statement statement = connect.createStatement();
 				ResultSet rs = statement.executeQuery(selectQuery);) {
 			while (rs.next()) {
-				int userExerciseId = rs.getInt("user_exercise_id");
-				int userId = rs.getInt("user_id");
-				int exerciseId = rs.getInt("exercise_id");
-				java.sql.Date date = rs.getDate("exercise_date");
-				String exerciseStatus = rs.getString("status");
+				int userExerciseId = rs.getInt(COLUMN_USEREXERCISE_ID);
+				int userId = rs.getInt(COLUMN_USER_ID);
+				int exerciseId = rs.getInt(COLUMN_EXERCISE_ID);
+				java.sql.Date date = rs.getDate(COLUMN_EXERCISE_DATE);
+				String exerciseStatus = rs.getString(COLUMN_STATUS);
 
 				LocalDate exerciseDate = date.toLocalDate();
 				UserExerciseStatus status = UserExerciseStatus.valueOf(exerciseStatus);
@@ -94,15 +100,15 @@ public class UserExerciseDAO {
 			try (ResultSet rs = selectPst.executeQuery()) {
 				if (rs.next()) {
 					UserExercise userExercise = new UserExercise();
-					java.sql.Date date = rs.getDate("exercise_date");
-					String exerciseStatus = rs.getString("status");
+					java.sql.Date date = rs.getDate(COLUMN_EXERCISE_DATE);
+					String exerciseStatus = rs.getString(COLUMN_STATUS);
 
 					LocalDate exerciseDate = date.toLocalDate();
 					UserExerciseStatus status = UserExerciseStatus.valueOf(exerciseStatus);
 
-					userExercise.setUserExerciseId(rs.getInt("user_exercise_id"));
-					userExercise.setUserId(rs.getInt("user_id"));
-					userExercise.setExerciseId(rs.getInt("exercise_id"));
+					userExercise.setUserExerciseId(rs.getInt(COLUMN_USEREXERCISE_ID));
+					userExercise.setUserId(rs.getInt(COLUMN_USER_ID));
+					userExercise.setExerciseId(rs.getInt(COLUMN_EXERCISE_ID));
 					userExercise.setExerciseDate(exerciseDate);
 					userExercise.setStatus(status);
 					return userExercise;
@@ -134,15 +140,15 @@ public class UserExerciseDAO {
 			try (ResultSet rs = selectPst.executeQuery()) { 
 				while (rs.next()) {
 					UserExercise userExercise = new UserExercise();
-					java.sql.Date date = rs.getDate("exercise_date");
-					String exerciseStatus = rs.getString("status");
+					java.sql.Date date = rs.getDate(COLUMN_EXERCISE_DATE);
+					String exerciseStatus = rs.getString(COLUMN_STATUS);
 
 					LocalDate exerciseDate = date.toLocalDate();
 					UserExerciseStatus status = UserExerciseStatus.valueOf(exerciseStatus);
 
-					userExercise.setUserExerciseId(rs.getInt("user_exercise_id"));
-					userExercise.setUserId(rs.getInt("user_id"));
-					userExercise.setExerciseId(rs.getInt("exercise_id"));
+					userExercise.setUserExerciseId(rs.getInt(COLUMN_USEREXERCISE_ID));
+					userExercise.setUserId(rs.getInt(COLUMN_USER_ID));
+					userExercise.setExerciseId(rs.getInt(COLUMN_EXERCISE_ID));
 					userExercise.setExerciseDate(exerciseDate);
 					userExercise.setStatus(status);
 

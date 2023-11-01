@@ -12,7 +12,7 @@ public class ConnectionDb {
 		String user;
 		String password;
 		// Cloud DB 
-		url = "jdbc:mysql://164.52.216.41:3306/hariharan_veerakumar_corejava_project";
+		url = System.getenv("DB_URL");
 		user = System.getenv("DB_USER");
 		password = System.getenv("DB_PASSWORD");
 		try {
